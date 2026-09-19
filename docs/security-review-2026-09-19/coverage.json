@@ -1,0 +1,100 @@
+{
+  "completeness": "complete",
+  "deferred": [],
+  "documentType": "codex-security.coverage",
+  "excludePaths": [
+    "node_modules/",
+    "dist/",
+    ".git/"
+  ],
+  "explicitExclusions": [
+    {
+      "pattern": "node_modules/",
+      "reason": "Dependency implementations and advisory database were not audited; lockfile reviewed."
+    },
+    {
+      "pattern": "dist/",
+      "reason": "Generated output; implementation reviewed in src."
+    },
+    {
+      "pattern": ".git/",
+      "reason": "Only current tracked source reviewed, not history."
+    }
+  ],
+  "includePaths": [
+    "."
+  ],
+  "inventoryStrategy": "repository",
+  "mode": "repository",
+  "openQuestions": [
+    {
+      "question": "Provider privacy/retention terms, adversarial model robustness and live Jev behavior were not evaluated."
+    },
+    {
+      "question": "Plugin installation through the desktop UI and host sandbox interaction remain unverified."
+    },
+    {
+      "question": "Whole-scan token usage is unavailable in this prompt-only scan."
+    }
+  ],
+  "scanId": "jev-in-codex-20260919-b0c0246",
+  "schemaVersion": "1.0",
+  "surfaces": [
+    {
+      "disposition": "no_issue_found",
+      "id": "filesystem",
+      "label": "File confinement and disclosure",
+      "notes": "Lexical/canonical containment and exclusions protect ordinary paths (src/workspace.ts:35-60). No traversal/static symlink bypass identified. Ancestor directory races require malicious concurrent mutation and are explicitly outside the documented model (README.md:203-204); O_NOFOLLOW is not a full sandbox.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "execution",
+      "label": "Command execution and capability authority",
+      "notes": "execFile uses fixed rg arguments, with no caller shell interpolation (src/workspace.ts:68-70). Ranked capability IDs do not reach execution sinks (src/service.ts:7-16). PATH and launch configuration are trusted installation inputs.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "provider",
+      "label": "Provider destination, credentials and response validation",
+      "notes": "Fixed HTTPS origin, redirect rejection, schema checks and sanitized errors (src/jev.ts:26-29,60-81). Defense-in-depth gap: response.json has no byte cap, and model metadata has no length cap. Exploitation requires provider compromise/malfunction; no arbitrary repository attacker path established.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "evidence",
+      "label": "Untrusted evidence and egress consent",
+      "notes": "Original source/log content reaches Codex and optionally TypeSafe (src/service.ts:19-22,31-43). Prompt injection and embedded secrets remain documented risks; provider instructions and skill preserve trust labels and execution permissions (src/jev.ts:52; skills/jev-assist/SKILL.md:28-32; README.md:194-206). No automatic execution.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "resources",
+      "label": "Work and output limits",
+      "notes": "File/discovery/shortlist/excerpt/occurrence limits exist (src/workspace.ts:9-11,44-60,68-101; src/service.ts:41-54). Byte accounting happens after excerpt parsing: skipped files can consume more I/O than the approximately 20 MiB stated scan budget, though 500 files and 1 MiB/file still cap reads (src/workspace.ts:81-86). A robustness correction is recommended, not a demonstrated privilege crossing. No application-wide concurrency/spend cap; only trusted local stdio caller exposed.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "supply-chain",
+      "label": "Dependencies, CI and installation",
+      "notes": "Lockfile origins/integrity and dependency relationships reviewed; dependency code and live advisories excluded. CI uses pull_request, contents:read, no injected secrets, and --ignore-scripts (.github/workflows/ci.yml:1-21). Pin actions to immutable commits as hardening. Use --ignore-scripts in user installation, matching CI. No demonstrated supply-chain compromise.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "configuration",
+      "label": "Configuration and packaging",
+      "notes": "Root required and CLI precedence explicit (src/index.ts:14-17). Plugin command needs installed/built executable (.mcp.json:4); no marketplace catalog in reviewed repository. Installation usability issue, not a security vulnerability. Absolute executable paths and explicit project root reduce setup ambiguity.",
+      "receiptRefs": []
+    },
+    {
+      "disposition": "no_issue_found",
+      "id": "tests",
+      "label": "Tests and contributor guidance",
+      "notes": "All tracked tests, skill and contributor documentation reviewed. Tests cover major boundaries but were not executed during this static audit. Prior implementation run reported 18 passing tests. No per-directory SECURITY.md policies found.",
+      "receiptRefs": []
+    }
+  ]
+}

@@ -30,6 +30,13 @@ Codex → MCP tool → local candidates → Jev relevance evaluation
 The first triage version ranks passages and groups identical chunks. Semantic
 failure grouping and root-cause classification are future work.
 
+## Ask your Codex agent to install it
+
+Open Codex in your coding project and paste the prompt in
+[the installation guide](docs/INSTALL.md). It walks the agent through a local
+plugin installation, a key-free setup check, and private API-key configuration.
+This repository contains plugin source; it is not itself a marketplace catalog.
+
 ## Install from source
 
 Requires **Node.js 22+**, **npm**, and **ripgrep (`rg`)** on PATH.
@@ -37,7 +44,7 @@ Requires **Node.js 22+**, **npm**, and **ripgrep (`rg`)** on PATH.
 ```bash
 git clone https://github.com/teempai/jev-in-codex.git
 cd jev-in-codex
-npm ci
+npm ci --ignore-scripts
 npm run check
 ```
 
@@ -204,6 +211,13 @@ to execute. This server is a local convenience boundary, not a sandbox against
 concurrent malicious filesystem modification. It has no telemetry, persistent
 cache, or content logging of its own. TypeSafe's handling of API data is governed
 by its own service terms. Provider error bodies are not exposed in tool results.
+
+## Security review
+
+The [2026-09-19 static security review](docs/security-review-2026-09-19/report.md)
+found no confirmed reportable vulnerabilities in the initial implementation.
+The report records the reviewed commit, trust assumptions, hardening opportunities,
+and exclusions. It is not a security guarantee or a live dependency advisory scan.
 
 ## Development
 

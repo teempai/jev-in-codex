@@ -1,0 +1,117 @@
+{
+  "documentType": "codex-security.scan-manifest",
+  "scan": {
+    "artifacts": [
+      {
+        "mediaType": "application/json",
+        "path": "findings.json",
+        "sha256": "0419fbc35ea9f9faa86263f9623a96ae725d04d69d77069a6a0b8d8b6cc27449"
+      },
+      {
+        "mediaType": "application/json",
+        "path": "coverage.json",
+        "sha256": "9c33d6b7405b9e6e77e29b74a3eded552f3796ba7b6296269d658bb11250328a"
+      }
+    ],
+    "completedAt": "2026-09-19T08:45:23.718833+00:00",
+    "coverageRef": "coverage.json",
+    "findingsRef": "findings.json",
+    "id": "jev-in-codex-20260919-b0c0246",
+    "producer": {
+      "name": "codex-security-plugin",
+      "version": "0.1.24"
+    },
+    "scope": {
+      "artifactsReviewed": [
+        ".codex-plugin/plugin.json",
+        ".github/workflows/ci.yml",
+        ".gitignore",
+        ".mcp.json",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "package-lock.json",
+        "package.json",
+        "skills/jev-assist/SKILL.md",
+        "src/index.ts",
+        "src/jev.ts",
+        "src/server.ts",
+        "src/service.ts",
+        "src/workspace.ts",
+        "test/jev.test.ts",
+        "test/mcp.test.ts",
+        "test/workspace.test.ts",
+        "tsconfig.json",
+        "tsconfig.test.json"
+      ],
+      "context": "Please conduct a security review of this implementation and also provide simple instructions on how users can ask their codex agent to install the plugin.",
+      "excludePaths": [
+        "node_modules/",
+        "dist/",
+        ".git/"
+      ],
+      "includePaths": [
+        "."
+      ],
+      "limitations": [
+        "Not a proof of absence of vulnerabilities.",
+        "No live dependency advisory lookup or audit of dependency implementation.",
+        "No live TypeSafe calls, penetration test, or adversarial model evaluation.",
+        "Trusted local workspace deployment; no guarantee against hostile concurrent filesystem mutation.",
+        "Token usage unavailable."
+      ],
+      "runtimeStatus": "Static source review; no application execution or network calls by source reviewers. Installation CLI help checked separately.",
+      "summary": "All 20 tracked files at the initial implementation revision, before subsequent documentation changes. Independent baseline auditor, architecture reviewer, and parent static boundary review. No confirmed reportable vulnerabilities.",
+      "validationMode": "Offline static analysis with independent baseline review; findings not inferred from documentation disclaimers alone."
+    },
+    "sealedAt": "2026-09-19T08:45:23.718833+00:00",
+    "startedAt": "2026-09-19T08:38:00Z",
+    "status": "completed",
+    "target": {
+      "displayName": "teempai/jev-in-codex",
+      "kind": "git_revision",
+      "remote": "https://github.com/teempai/jev-in-codex",
+      "revision": "b0c0246a38be91f91d168ee8556c284a8c8a3e49",
+      "targetId": "jev-in-codex-b0c0246a38be91f91d168ee8556c284a8c8a3e49"
+    },
+    "threatModel": {
+      "assets": [
+        "Workspace source, documentation and logs: read locally, returned as original excerpts, optionally disclosed to TypeSafe (src/workspace.ts:44-60,81-97; src/service.ts:19-22,31-43).",
+        "TypeSafe API credential: environment-sourced bearer token; diagnostics omit credential-bearing details (src/index.ts:17; src/jev.ts:60-63,79-81).",
+        "Codex decision integrity and execution authority: recommendations influence decisions but never execute capabilities (src/service.ts:7-16; skills/jev-assist/SKILL.md:28-32).",
+        "Local availability and provider account usage: bounded per-call scanning and at most six sequential provider requests; aggregate volume depends on the local client (src/workspace.ts:9-11,68-69,81-94; src/jev.ts:48-63; src/server.ts:19-33).",
+        "Installed executable/dependency integrity: build produces dist/index.js launched directly or by PATH-resolved linked binary (package.json:9-18; .mcp.json:3-10; README.md:37-56,93-105)."
+      ],
+      "assumptions": [
+        "Trusted launching client, environment, installed Node/rg and configured root. Local convenience boundary, not isolation from malicious same-user code or directory races (src/index.ts:14-18; src/workspace.ts:68-70; README.md:203-204).",
+        "Users choose a narrow project root and content approved for TypeSafe. Filename exclusions do not detect embedded secrets; explicit triage can read gitignored files (README.md:187-206; skills/jev-assist/SKILL.md:32).",
+        "Agent treats retrieved instructions as untrusted and applies normal authorization before executing suggestions (src/service.ts:16; skills/jev-assist/SKILL.md:12,30-31).",
+        "TypeSafe trusted for intended data processing, availability and scoring. Provider privacy terms are outside source implementation (README.md:194-206; src/jev.ts:60-78).",
+        "Plugin UI installation was not verified. Metadata installation alone does not install Node, dependencies or ripgrep (README.md:93-105)."
+      ],
+      "attackerCapabilities": [
+        "Repository/log contributors control eligible filenames/content, including instruction-like text, that users choose to read (src/workspace.ts:75-97; src/service.ts:31-43).",
+        "Connected local caller controls objectives, catalogs, relative scopes, paths and valid limits, but cannot change provider URL or execute recommended tools through these schemas (src/server.ts:16-34; src/service.ts:7-16; src/jev.ts:60).",
+        "A malicious/compromised provider controls scores, model metadata, timing and response size; schema validation follows response.json (src/jev.ts:26-29,60-78).",
+        "Control of launch environment, PATH, dependencies or configured root gives broader local authority than repository text alone. Concurrent malicious filesystem mutation is outside the documented sandbox guarantee (src/index.ts:14-17; src/workspace.ts:68-70; README.md:203-204)."
+      ],
+      "securityObjectives": [
+        "Confine ordinary reads to root; reject excluded paths and static escaping symlinks (src/workspace.ts:35-60; test/workspace.test.ts:16-25).",
+        "Only configured remote mode sends content to the fixed HTTPS provider, and errors omit remote bodies/secrets (src/jev.ts:42,60-81).",
+        "Keep tools read-only; ranking does not grant execution permission (src/server.ts:11; src/service.ts:16; src/workspace.ts:46; skills/jev-assist/SKILL.md:30).",
+        "Bound work and expose incomplete retrieval, truncation and fallback (src/workspace.ts:9-11,68-101; src/service.ts:41-56; src/jev.ts:37-43,58-81).",
+        "Preserve original evidence/locations for verification (src/workspace.ts:106-123; src/service.ts:45-56; test/workspace.test.ts:38-45)."
+      ],
+      "summary": "A local stdio MCP server exposes three bounded ranking/search/triage tools to its launching Codex client. It reads a mandatory configured workspace, uses fixed-argument ripgrep for discovery, and optionally sends objectives and selected content to the fixed TypeSafe HTTPS API. It neither executes selected capabilities nor listens on a network endpoint (src/index.ts:14-18; src/server.ts:16-34; src/workspace.ts:44-70; src/jev.ts:54-64; src/service.ts:7-16).",
+      "trustBoundaries": [
+        "Launch configuration to MCP process: stdio only; --root overrides JEV_WORKSPACE_ROOT and missing root fails. API key/model are environment inputs; tool annotations are descriptive rather than authorization (src/index.ts:10-18; .mcp.json:3-10; src/server.ts:11-14).",
+        "MCP caller to files: bounded schemas; relative paths checked lexically and after realpath against root and exclusions. Reads use O_NOFOLLOW/O_NONBLOCK and reject nonregular, oversized, binary and invalid UTF-8 files (src/server.ts:8-10,19-33; src/workspace.ts:18-23,35-60).",
+        "Untrusted workspace text to provider and Codex: filenames/content enter provider state and original MCP evidence. Provider instructions/skill label content untrusted; text is not transformed into trusted instructions (src/service.ts:19-22; src/jev.ts:50-56; src/workspace.ts:123; skills/jev-assist/SKILL.md:30-32).",
+        "Process to TypeSafe: fixed https://api.typesafe.ai/v1/systemone, redirects rejected, eight-second timeout, bearer credential. No key means local ranking. Responses validated before scores are used (src/jev.ts:13,26-29,42-43,54-75).",
+        "Process to ripgrep: PATH-resolved rg, fixed arguments, no shell, root cwd, ten-second timeout and four-MiB output cap. Caller scope/query are not command arguments (src/workspace.ts:1-8,63-80).",
+        "Installation/CI to executed local code: reviewed README used npm ci and npm run check; CI disables dependency lifecycle scripts. Runtime versions exact, lockfile has registry origins/integrity; some development dependencies have lifecycle scripts. Actions use version tags with contents:read and no injected secrets (README.md:37-42; package.json:11-18; package-lock.json; .github/workflows/ci.yml:5-21)."
+      ]
+    }
+  },
+  "schemaVersion": "1.0"
+}
