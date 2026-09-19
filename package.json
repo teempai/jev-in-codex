@@ -20,7 +20,8 @@
     "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
     "test": "npm run build && tsx --test test/*.test.ts",
     "check": "npm run typecheck && npm test",
-    "test:e2e": "npm run build && tsx --test test/e2e.test.ts"
+    "test:e2e": "npm run build && tsx --test test/e2e.test.ts",
+    "demo": "npm run build && node scripts/demo.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.0.0",

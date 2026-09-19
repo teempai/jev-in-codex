@@ -1,0 +1,78 @@
+{
+  "title": "Jev in Codex",
+  "mode": "local-simulated-provider",
+  "note": "Real compiled-server MCP calls; synthetic data and deterministic TypeSafe responses. Presentation is paced for readability, not a latency benchmark. This is not a recording of the Codex UI.",
+  "http_requests": 4,
+  "scenes": [
+    {
+      "title": "Connected to the real MCP server",
+      "lines": [
+        "$ npm run demo",
+        "",
+        "Task: investigate a failing database reconnect test.",
+        "",
+        "Compiled server connected over stdio.",
+        "3 tools discovered:",
+        "  jev_select_capability",
+        "  jev_search",
+        "  jev_triage"
+      ]
+    },
+    {
+      "title": "1 / Choose a useful capability",
+      "lines": [
+        "> jev_select_capability",
+        "",
+        "Example shortlist: web search, shell, image generation",
+        "3 candidates evaluated",
+        "",
+        "Recommended: exec_command",
+        "Relevance score: 0.96",
+        "",
+        "The caller keeps control of execution."
+      ]
+    },
+    {
+      "title": "2 / Find the relevant code",
+      "lines": [
+        "> jev_search",
+        "",
+        "2 files scanned; 2 excerpts ranked",
+        "Top match: src/db.ts:1-4  [0.98]",
+        "",
+        "export async function connectDatabase(client) {",
+        "  // TODO: retry transient connection failures.",
+        "  return client.connect();",
+        "}"
+      ]
+    },
+    {
+      "title": "3 / Find the useful part of a long log",
+      "lines": [
+        "> jev_triage",
+        "",
+        "124 log lines; 5 chunks evaluated",
+        "Top excerpt: test-output.txt:121-124",
+        "",
+        "FAIL database reconnects after a transient error",
+        "Error: connection refused",
+        "Expected retry attempts: 3",
+        "Received: 1"
+      ]
+    },
+    {
+      "title": "Evidence ready for the coding agent",
+      "lines": [
+        "Suggested capability: exec_command",
+        "Relevant source: src/db.ts:1-4",
+        "Failure evidence: test-output.txt:121-124",
+        "",
+        "3 real MCP tool calls completed.",
+        "4 HTTP requests served by the local simulator.",
+        "Original files and full output remain available.",
+        "",
+        "Synthetic fixture scores; no live Jev prediction."
+      ]
+    }
+  ]
+}

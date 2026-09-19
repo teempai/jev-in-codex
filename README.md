@@ -30,6 +30,14 @@ Codex → MCP tool → local candidates → Jev relevance evaluation
 The first triage version ranks passages and groups identical chunks. Semantic
 failure grouping and root-cause classification are future work.
 
+## Demo
+
+![Animated local demo showing capability selection, source search, and log triage](docs/assets/jev-demo.gif)
+
+Animated replay of actual MCP results using synthetic data and simulated TypeSafe
+responses. Playback is paced for readability; this is not a live Codex UI capture
+or a latency benchmark. [Static preview](docs/assets/jev-demo.png).
+
 ## Install
 
 Give this prompt to your Codex session, opened in the project you want to use:
@@ -235,35 +243,10 @@ found no confirmed reportable vulnerabilities in the initial implementation.
 The report records the reviewed commit, trust assumptions, hardening opportunities,
 and exclusions. It is not a security guarantee or a live dependency advisory scan.
 
-## Test locally without an API key
+## Contributing
 
-```bash
-npm ci --ignore-scripts
-npm run test:e2e
-```
-
-This launches the compiled MCP server and a local HTTP server that simulates
-TypeSafe. It exercises all three tools, provider-driven ranking, batching,
-failure handling, and timeout recovery with synthetic data and a fake key.
-It takes roughly ten seconds and makes no external API calls.
-See [the testing guide](docs/TESTING.md) for coverage and limitations.
-
-## Development
-
-```bash
-npm run typecheck
-npm test
-npm run build
-```
-
-Tests cover request construction, malformed responses, complete fallback after
-partial failure, path and symlink boundaries, retrieval/triage coverage, original
-line fidelity, an actual stdio MCP client/server session, and the compiled server against a
-local TypeSafe HTTP simulator. No live TypeSafe key is required. CI runs the
-complete suite on Node 22 and 24.
-
-Before making performance claims, evaluate against the local baseline on
-representative coding tasks. See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development, local testing, and
+benchmarking guidance.
 
 ## License and credits
 
