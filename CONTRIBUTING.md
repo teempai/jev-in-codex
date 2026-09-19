@@ -2,7 +2,9 @@
 
 Use Node.js 22+ and ripgrep. Clone the repository, run `npm ci`, and run
 `npm run check` before opening a pull request. Tests use temporary workspaces
-and mock TypeSafe responses; they need no API key and make no paid API calls.
+and simulated TypeSafe responses; they need no API key and make no external API
+calls. The end-to-end test uses loopback HTTP and the compiled MCP server.
+Run it separately with `npm run test:e2e`; see [the testing guide](docs/TESTING.md).
 
 Keep the integration small. Codex owns execution and reasoning; Jev ranks
 bounded alternatives. Preserve original evidence and report coverage limits.

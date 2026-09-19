@@ -10,7 +10,7 @@ test('stdio MCP handshake, tool discovery, all three calls, and validation', { t
   const root = await mkdtemp(path.join(tmpdir(), 'jev-mcp-'));
   await writeFile(path.join(root, 'output.txt'), 'PASS startup\nERROR database connection refused\n');
   const transport = new StdioClientTransport({ command: process.execPath,
-    args: ['--import', 'tsx', 'src/index.ts', '--root', root], env: { PATH: process.env.PATH ?? '' }, stderr: 'pipe' });
+    args: ['dist/index.js', '--root', root], env: { PATH: process.env.PATH ?? '' }, stderr: 'pipe' });
   let stderr = '';
   transport.stderr?.on('data', chunk => { stderr += chunk.toString(); });
   const client = new Client({ name: 'jev-test', version: '1.0.0' });

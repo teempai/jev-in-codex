@@ -235,6 +235,19 @@ found no confirmed reportable vulnerabilities in the initial implementation.
 The report records the reviewed commit, trust assumptions, hardening opportunities,
 and exclusions. It is not a security guarantee or a live dependency advisory scan.
 
+## Test locally without an API key
+
+```bash
+npm ci --ignore-scripts
+npm run test:e2e
+```
+
+This launches the compiled MCP server and a local HTTP server that simulates
+TypeSafe. It exercises all three tools, provider-driven ranking, batching,
+failure handling, and timeout recovery with synthetic data and a fake key.
+It takes roughly ten seconds and makes no external API calls.
+See [the testing guide](docs/TESTING.md) for coverage and limitations.
+
 ## Development
 
 ```bash
@@ -245,8 +258,9 @@ npm run build
 
 Tests cover request construction, malformed responses, complete fallback after
 partial failure, path and symlink boundaries, retrieval/triage coverage, original
-line fidelity, and an actual stdio MCP client/server session. No live TypeSafe
-key is required. CI runs on Node 22 and 24.
+line fidelity, an actual stdio MCP client/server session, and the compiled server against a
+local TypeSafe HTTP simulator. No live TypeSafe key is required. CI runs the
+complete suite on Node 22 and 24.
 
 Before making performance claims, evaluate against the local baseline on
 representative coding tasks. See [CONTRIBUTING.md](CONTRIBUTING.md).
