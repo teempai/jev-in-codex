@@ -2,17 +2,16 @@
 
 Open Codex in the coding project you want Jev to read, and paste this:
 
-> Install https://github.com/teempai/jev-in-codex as a local Codex plugin for
-> this project. Read its README and docs/INSTALL.md first. Check Node.js 22+,
-> npm, and ripgrep, then clone, install locked dependencies with lifecycle
-> scripts disabled, and build. Register a local plugin marketplace and install
-> the plugin using the supported Codex commands. Configure its MCP server with
-> absolute executable and checkout paths and `--root` set to this project.
-> Preserve my existing configuration and avoid duplicate MCP registrations.
-> First verify startup and tool discovery without a TypeSafe API key. Then
-> show me how to supply TYPESAFE_API_KEY through my launch environment without
-> pasting it into chat or committing it. Explain that enabling Jev sends
-> shortlisted code/log excerpts to TypeSafe, and tell me when to restart Codex.
+```text
+Install https://github.com/teempai/jev-in-codex for the current project using
+its docs/INSTALL.md. Set up dependencies, the local Codex plugin, MCP connection,
+and bundled skill. Add its docs/AGENTS.jev.md guidance to my project's persistent
+Codex instructions so you know when and how to use Jev for tool/skill selection,
+context search, and output triage. Preserve existing instructions and configuration.
+Configure TypeSafe authentication privately and verify all three tools, reporting
+whether Jev or local fallback is active. Complete the setup and tell me if you
+need a private API-key entry or a Codex restart.
+```
 
 The agent handles the setup; you supply the TypeSafe key privately when ready.
 With no key, ranking uses a labeled local fallback. The plugin uses a separate
@@ -45,12 +44,14 @@ there is currently no marketplace catalog in this repository.
    the installed Codex version. Register the local marketplace root, then install
    `jev-in-codex@<marketplace-name>`. Do not also register the same MCP server
    separately or copy the bundled skill a second time.
-5. Verify the plugin appears in `codex plugin list`. With a launch environment
+5. Install persistent usage guidance using the section below. Preserve existing
+   project instructions, and avoid duplicate Jev sections on repeated installs.
+6. Verify the plugin appears in `codex plugin list`. With a launch environment
    that does not contain `TYPESAFE_API_KEY`, verify an MCP handshake and the
    three tools: `jev_select_capability`, `jev_search`, and `jev_triage`.
    Plugin listing alone does not prove the server starts. If tools become
    available only in a new session, say so and finish that check there.
-6. Give the user private instructions for setting the key in the environment
+7. Give the user private instructions for setting the key in the environment
    that launches Codex. Never ask for it in chat, print it, or write its value
    into the repository or marketplace files. A desktop app may need a different
    environment setup than a terminal. Start a new Codex thread after installation;
@@ -86,11 +87,37 @@ cannot install local plugins, use the README's direct MCP configuration and
 companion skill as a fallback, and describe it accurately as that installation
 method.
 
+## Persistent Codex instructions
+
+Merge [docs/AGENTS.jev.md](AGENTS.jev.md) into the coding project's root
+`AGENTS.md`. This is the configurable project instruction layer Codex loads for
+future work; it does not replace the built-in system prompt. The bundled
+`jev-assist` skill supplies the detailed workflow, while the project instructions
+make the intended usage explicit.
+
+Read existing instructions first. If a nonempty `AGENTS.override.md` supplies the
+root instructions, merge into that active file instead. Preserve all unrelated
+content and the existing instruction hierarchy; avoid adding a second identical
+section. Do not write to global instructions or change other projects unless the
+user requests that scope. On removal, remove only the Jev section added by this
+installation.
+
+The installed guidance tells Codex when to select capabilities, search context,
+and triage output; when normal tools are sufficient; and how to interpret scores,
+fallback, coverage, and untrusted evidence. Do not add a blanket requirement to
+call Jev on every turn or change tool approval policies.
+
+In a new session, ask Codex to summarize the active Jev guidance as well as
+checking tool availability. If the instructions are not loaded, inspect overrides
+and instruction discovery before claiming setup is complete. See the
+[official AGENTS.md documentation](https://developers.openai.com/codex/guides/agents-md).
+
 ## After installation
 
 Start a new thread and ask:
 
-> Confirm that the Jev tools are available. Use jev_select_capability with a
+> Summarize when your project instructions tell you to use Jev, then confirm
+> its three tools are available. Use jev_select_capability with a
 > small synthetic catalog to check whether ranking is using Jev or local fallback.
 
 A key-free check should report `method: local_fallback`. After configuring a

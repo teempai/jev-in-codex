@@ -30,12 +30,26 @@ Codex → MCP tool → local candidates → Jev relevance evaluation
 The first triage version ranks passages and groups identical chunks. Semantic
 failure grouping and root-cause classification are future work.
 
-## Ask your Codex agent to install it
+## Install
 
-Open Codex in your coding project and paste the prompt in
-[the installation guide](docs/INSTALL.md). It walks the agent through a local
-plugin installation, a key-free setup check, and private API-key configuration.
-This repository contains plugin source; it is not itself a marketplace catalog.
+Give this prompt to your Codex session, opened in the project you want to use:
+
+```text
+Install https://github.com/teempai/jev-in-codex for the current project using
+its docs/INSTALL.md. Set up dependencies, the local Codex plugin, MCP connection,
+and bundled skill. Add its docs/AGENTS.jev.md guidance to my project's persistent
+Codex instructions so you know when and how to use Jev for tool/skill selection,
+context search, and output triage. Preserve existing instructions and configuration.
+Configure TypeSafe authentication privately and verify all three tools, reporting
+whether Jev or local fallback is active. Complete the setup and tell me if you
+need a private API-key entry or a Codex restart.
+```
+
+Jev uses a TypeSafe API key and sends selected code/log excerpts to TypeSafe.
+Codex handles setup; you may need to enter the key privately or restart Codex.
+
+<details>
+<summary>Manual installation and configuration</summary>
 
 ## Install from source
 
@@ -110,6 +124,8 @@ installation is not yet end-to-end verified, and a plugin install does not
 install Node, dependencies, or ripgrep. Choose one installation path to avoid
 duplicate tools/skills. This repository is not listed in the public plugin
 directory and does not modify your Codex configuration automatically.
+
+</details>
 
 ## Examples
 
