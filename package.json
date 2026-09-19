@@ -1,0 +1,19 @@
+{
+  "name": "jev-in-codex",
+  "version": "0.1.0",
+  "description": "Jev-powered capability selection, context search, and output triage for Codex via MCP",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/teempai/jev-in-codex.git" },
+  "bin": { "jev-in-codex": "dist/index.js" },
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
+    "test": "tsx --test test/*.test.ts",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": { "@modelcontextprotocol/server": "2.0.0", "zod": "4.6.5" },
+  "devDependencies": { "@modelcontextprotocol/client": "2.0.0", "@types/node": "^22.0.0", "tsx": "^4.20.0", "typescript": "^5.9.0" }
+}

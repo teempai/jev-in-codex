@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "jev": {
+      "command": "jev-in-codex",
+      "args": [],
+      "env_vars": [
+        "TYPESAFE_API_KEY",
+        "JEV_WORKSPACE_ROOT",
+        "JEV_MODEL"
+      ]
+    }
+  }
+}

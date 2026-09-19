@@ -1,0 +1,34 @@
+{
+  "name": "jev-in-codex",
+  "version": "0.1.0",
+  "description": "Jev-powered capability selection, context search, and output triage for Codex.",
+  "author": {
+    "name": "Vectordrift",
+    "url": "https://github.com/teempai"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Jev in Codex",
+    "shortDescription": "Rank capabilities and evidence with Jev.",
+    "longDescription": "Use a local MCP server to rank tools and skills, rerank code excerpts, and triage saved output with Jev.",
+    "developerName": "Vectordrift",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Use Jev to find relevant evidence for this task."
+    ]
+  },
+  "mcpServers": "./.mcp.json",
+  "repository": "https://github.com/teempai/jev-in-codex",
+  "homepage": "https://github.com/teempai/jev-in-codex",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "jev",
+    "mcp",
+    "context",
+    "triage"
+  ]
+}
