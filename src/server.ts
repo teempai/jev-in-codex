@@ -1,36 +1,20 @@
 import { McpServer } from '@modelcontextprotocol/server';
 import { z } from 'zod';
-import { Service } from './service.js';
-import { InputError } from './workspace.js';
+import { Workspace, InputError } from './workspace.js';
+import { labelFile, type JevOptions } from './labelling.js';
 
-export function createServer(service: Service): McpServer {
-  const server = new McpServer({ name: 'jev-in-codex', version: '0.1.0' });
-  const question = z.string().trim().min(1).max(2000);
-  const relativePath = z.string().min(1).max(1024);
-  const limit = z.number().int().min(1).max(10).default(5);
-  const annotations = { readOnlyHint: true, destructiveHint: false, idempotentHint: false, openWorldHint: true };
-  const run = async (operation: () => Promise<unknown>) => {
-    try { return { content: [{ type: 'text' as const, text: JSON.stringify(await operation()) }] }; }
-    catch (error) { return { isError: true, content: [{ type: 'text' as const, text: error instanceof InputError ? error.message : 'Unable to read the requested workspace data. Check the path and access permissions.' }] }; }
-  };
-  server.registerTool('jev_select_capability', {
-    description: 'Rank a supplied catalog of tools or skills for an objective. Sends descriptions to TypeSafe if configured. Does not discover or execute capabilities.',
-    annotations,
-    inputSchema: z.object({ objective: question, candidates: z.array(z.object({
-      id: z.string().min(1).max(200), kind: z.enum(['tool', 'skill']), description: z.string().min(1).max(2000),
-    })).min(1).max(24), limit }),
-  }, input => run(() => service.select(input.objective, input.candidates, input.limit)));
-  server.registerTool('jev_search', {
-    description: 'Find a bounded lexical shortlist of workspace code/docs, then rerank with Jev. Sends shortlisted excerpts to TypeSafe if configured. Prefer rg for exact lookups. Returns source lines and coverage.',
-    annotations,
-    inputSchema: z.object({ question, scope: z.array(relativePath).min(1).max(10).default(['.']),
-      query_terms: z.array(z.string().min(1).max(100)).max(12).default([]), limit }),
-  }, input => run(() => service.search(input.question, input.scope, input.query_terms, input.limit)));
-  server.registerTool('jev_triage', {
-    description: 'Rank original excerpts from a saved text artifact (max 1 MiB) and group identical chunks. Sends excerpts to TypeSafe if configured. Returns coverage and source line numbers; does not execute commands or diagnose definitively.',
-    annotations,
-    inputSchema: z.object({ question, artifact_path: relativePath, start_line: z.number().int().min(1).default(1),
-      end_line: z.number().int().min(1).optional(), limit }),
-  }, input => run(() => service.triage(input.question, input.artifact_path, input.start_line, input.end_line, input.limit)));
+export function createServer(workspace: Workspace, options: JevOptions = {}): McpServer {
+  const server = new McpServer({ name: 'jev-in-codex', version: '0.2.0' }, {
+    instructions: 'jev_label labels a JSONL feedback batch with Jev and writes the complete output file. It returns the policy, counts and original evidence for uncertain decisions. Review those records and edit the artifact if needed. Other reads remain available; do not automatically reread the entire batch merely to transcribe labels.',
+  });
+  server.registerTool('jev_label', {
+    description: 'Label id/text JSONL feedback records using Jev and create a complete id/label JSONL artifact. Sends records to TypeSafe. The only admitted policy is feedback_theme. Never overwrites files. Returns evidence below confidence 0.8 for review. Benchmark gains apply to the documented larger batch, not arbitrary classification.',
+    annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+    inputSchema: z.object({ path: z.string().min(1).max(1024), policy: z.literal('feedback_theme').default('feedback_theme'),
+      output_path: z.string().min(1).max(1024).optional().describe('New relative output file; defaults to decisions.jsonl beside the input. Parent must exist.') }),
+  }, async input => {
+    try { return { content: [{ type: 'text' as const, text: JSON.stringify(await labelFile(workspace, input.path, input.output_path, options)) }] }; }
+    catch (error) { return { isError: true, content: [{ type: 'text' as const, text: error instanceof InputError ? error.message : 'Could not create the labelled file. Check paths, permissions and whether the output exists.' }] }; }
+  });
   return server;
 }

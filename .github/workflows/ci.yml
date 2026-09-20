@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - run: sudo apt-get update && sudo apt-get install -y ripgrep
       - run: npm ci --ignore-scripts
       - run: npm run check
+      - run: node benchmarks/analyze.mjs benchmarks/results/release --require-pass

@@ -1,0 +1,8 @@
+{"id": "r-jcnv3ns", "text": "The run is red. The only saved output says test failed; there is no assertion or provisioning log."}
+{"id": "r-9zw6wpk", "text": "A new parser consistently drops the final field of the provided sample on every rerun; the old parser preserves it."}
+{"id": "r-abrtdz3", "text": "The container registry returns 503 before the test image is downloaded. No application tests execute."}
+{"id": "r-8znxx39", "text": "Same commit, inputs and isolated runner configuration: this timing assertion fails twice and passes three times; dependencies report healthy."}
+{"id": "r-w8gdu88", "text": "The runner disk fills while installing packages, before the application starts."}
+{"id": "r-5g553x5", "text": "Across three clean runs, cart.total returns 8 while the documented expected result is 10. Provisioning and dependencies are healthy."}
+{"id": "r-3x5ktfp", "text": "One assertion failed during a period of network errors, but it is not known whether the test depends on that network."}
+{"id": "r-k86xqhf", "text": "An unchanged unit test alternates success and timeout across five immediate runs on the same healthy runner."}

@@ -1,49 +1,17 @@
 # Contributing
 
-Use Node.js 22+ and ripgrep. Clone the repository, run `npm ci --ignore-scripts`, and run
-`npm run check` before opening a pull request. Tests use temporary workspaces
-and simulated TypeSafe responses; they need no API key and make no external API
-calls. The end-to-end test uses loopback HTTP and the compiled MCP server.
-Run it separately with `npm run test:e2e`; see [the testing guide](docs/TESTING.md).
+Use Node.js 22+. Run `npm ci --ignore-scripts` and `npm run check`. Tests use synthetic records and mocked or loopback TypeSafe responses, require no API key and make no paid requests. See [docs/TESTING.md](docs/TESTING.md).
 
-Keep the integration small. Codex owns execution and reasoning; Jev ranks
-bounded alternatives. Preserve original evidence and report coverage limits.
-Do not silently turn a provider error into a successful Jev result.
+Keep the integration small: Jev supplies decisions; Codex owns reasoning, review and actions. Preserve full output coverage, original review evidence, path boundaries, overwrite protection and explicit failures. Do not add fallback labels or hide provider failures.
 
-For behavior changes, include a representative test or reproducible example.
-For quality/performance claims, compare against the local fallback using
-held-out tasks and report retrieval recall, selection accuracy, latency, API
-usage, and downstream task success. No such benchmark is established yet.
+## Capabilities must earn their place
 
-Open an issue before broadening v1 into orchestration, custom compaction, or
-persistent memory. Never include credentials or private source/logs in issues,
-tests, or pull requests. Contributions are provided under this project's MIT
-license; retain third-party notices when reusing code.
+Follow [benchmarks/POLICY.md](benchmarks/POLICY.md) before exposing any new tool, policy or broader capability. Include the implemented PoC, frozen protocol, representative inputs and reference labels, paired plain-Codex comparison, raw measurements, actual provider-call evidence, complete-output quality grades and reproducible analysis. Report negative results and regressions. A passing synthetic development example supports only that disclosed workload.
 
-## Reproduce the animated demo
+The current interface contract test asserts exactly one advertised tool. Changes to that contract require benchmark evidence and review, not merely updating the assertion. CI recomputes the admitted release benchmark gate from checked-in measurements and complete artifacts; a green check does not substitute for scientific review or establish held-out validity.
 
-Run the interactive-free local demonstration from the repository:
+Meaningful behavior changes require tests. Changes to the model, policy, batching, review workflow or transport that could invalidate the performance claim require rerunning the end-to-end benchmark. No new dependency or abstraction is needed merely to support another label policy.
 
-```bash
-npm run demo
-```
+Never commit keys, credentials, private inputs, raw account telemetry or machine-specific configuration. The historical benchmark export is sanitized and labelled; local unredacted evidence stays local. Do not publish an unreviewed run directory.
 
-It launches the compiled MCP server, creates a temporary example project, makes
-all three tool calls, and prints their actual results. The TypeSafe HTTP responses
-and all workspace contents are synthetic. It needs no API key, makes no external
-API calls, and cleans up the temporary project. Assertions stop the recording if
-expected results change.
-
-To regenerate the README media:
-
-```bash
-npm run demo -- --record docs/assets/jev-demo.json
-python3 scripts/render-demo.py
-```
-
-The optional renderer needs Python 3, Pillow, Fontconfig (`fc-match`), and locally
-installed sans-serif/monospace fonts. These are media-authoring tools, not runtime
-dependencies of the plugin. The renderer creates the GIF and a static PNG from
-the recorded JSON; keep all three files together when updating the demo. Font
-appearance may vary by machine. The checked-in animation is a paced replay,
-not a screen recording of the Codex app or a live-provider benchmark.
+Contributions use the repository's MIT license. Retain third-party notices when reusing code.

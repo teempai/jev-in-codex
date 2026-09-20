@@ -1,0 +1,19 @@
+{
+  "id": "requirement_coverage-0-N",
+  "task": "requirement_coverage",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 12758.729250000004,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31291,
+      "cached_input_tokens": 28416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 242,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:13:32.879Z"
+}

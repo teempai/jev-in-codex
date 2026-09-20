@@ -1,0 +1,8 @@
+{"id": "r-nxgdthp", "text": "Request: summarize the attached report in five bullets. Exactly one report is attached."}
+{"id": "r-xuw6ftm", "text": "Request: transfer the agreed amount to the usual account. Neither the amount nor account is supplied in available context."}
+{"id": "r-q3qxyzk", "text": "Request: send it to Alex. Two different documents and two contacts named Alex are present."}
+{"id": "r-kd8svtc", "text": "Request: convert temperatures to Celsius. Every value is explicitly marked Fahrenheit."}
+{"id": "r-4ad3yhu", "text": "Request: book the cheaper flight. Two flights have equal prices but different airports and dates."}
+{"id": "r-4chckk2", "text": "Request: delete the old database. There are two databases and neither is identified as old."}
+{"id": "r-tbq6y45", "text": "Request: create a read-only summary of all three listed files; no external action is requested."}
+{"id": "r-8f6ggd6", "text": "Request: rename draft.txt to notes.txt in this folder. draft.txt exists and notes.txt does not."}

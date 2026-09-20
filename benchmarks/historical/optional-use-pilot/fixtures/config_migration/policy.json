@@ -1,0 +1,12 @@
+{
+  "id": "config_migration",
+  "area": "coding",
+  "title": "Classify configuration migration work",
+  "question": "Given the migration rule and this configuration, what action is needed?",
+  "criteria": {
+    "change": "The configuration uses behavior explicitly requiring migration",
+    "none": "It already conforms or the rule does not apply",
+    "review": "Required configuration context is missing"
+  },
+  "benefit": "Triage many configurations while leaving actual edits to Codex."
+}

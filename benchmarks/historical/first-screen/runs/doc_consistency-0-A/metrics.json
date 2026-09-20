@@ -1,0 +1,19 @@
+{
+  "id": "doc_consistency-0-A",
+  "task": "doc_consistency",
+  "rep": 0,
+  "arm": "A",
+  "elapsed_ms": 16762.500207999983,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18723,
+      "cached_input_tokens": 8960,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 179,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:13:58.405Z"
+}

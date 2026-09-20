@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"output_path": {"type": "string"}, "records": {"type": "integer"}}, "required": ["output_path", "records"], "additionalProperties": false}

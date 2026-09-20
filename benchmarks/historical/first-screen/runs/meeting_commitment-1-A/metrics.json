@@ -1,0 +1,19 @@
+{
+  "id": "meeting_commitment-1-A",
+  "task": "meeting_commitment",
+  "rep": 1,
+  "arm": "A",
+  "elapsed_ms": 8647.146874999977,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18709,
+      "cached_input_tokens": 16768,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 198,
+      "reasoning_output_tokens": 15
+    }
+  ],
+  "ended": "2026-09-20T17:22:34.661Z"
+}

@@ -1,74 +1,16 @@
-# Test locally without a TypeSafe account
+# Testing
 
-Install Node.js 22+ and ripgrep (`rg`), then run from the repository:
+Use Node.js 22+ and run:
 
-```bash
+```sh
 npm ci --ignore-scripts
-npm run test:e2e
-```
-
-No TypeSafe key, Codex login, or paid API request is needed. The test supplies a
-synthetic key to its child process, creates a temporary workspace, and removes
-that workspace when it finishes. Allow loopback networking: the simulated HTTP
-provider binds to `127.0.0.1` on an automatically selected port.
-
-The test takes roughly ten seconds, including an intentional eight-second
-provider timeout. Successful output lists each scenario followed by zero failed
-tests. To run type checking and the complete test suite, use:
-
-```bash
 npm run check
 ```
 
-## What runs end to end
+No TypeSafe key or paid call is needed. The unit suite verifies real provider delegation, eight-way concurrency, full-file coverage, original review evidence, explicit missing-key/provider failures, malformed/partial responses, input validation, traversal and symlink boundaries, nested outputs and overwrite refusal.
 
-```text
-MCP SDK client
-  → real stdio transport and protocol handshake
-  → compiled dist/index.js in a separate Node process
-  → real tool schema validation and service logic
-  → real workspace reads and ripgrep discovery
-  → real Jev request construction and HTTP fetch
-  → local HTTP server returning simulated TypeSafe responses
-  → real response parsing, ranking, and evidence formatting
-  → MCP result received and checked by the client
-```
+The end-to-end test starts the compiled server through real MCP stdio, advertises only jev_label, validates its writing annotation, sends eight real HTTP requests to a loopback TypeSafe simulator, and checks the saved labels. It confirms a second write is rejected before another provider call and the retired search tool is unavailable. The test-only preload redirects the fixed TypeSafe URL to localhost; production has no endpoint override and never loads it. Allow localhost networking for this test.
 
-The production code still requests the fixed TypeSafe HTTPS URL. A test-only
-Node preload, `test/fixtures/local-typesafe.mjs`, redirects that exact fetch to
-the loopback HTTP server. Other fetch destinations are rejected. The module is
-loaded explicitly by this test; the production entry point never imports it.
-There is no production endpoint override or runtime mock mode.
+`npm run test:e2e` runs the integration test alone. `node benchmarks/analyze.mjs benchmarks/results/release --require-pass` recalculates the recorded release benchmark's accuracy, provider use and efficiency gate. These are distinct checks: mocks establish behavior, while live benchmark traces establish measured performance.
 
-The simulator validates the HTTP method, path, synthetic authorization header,
-model selection, request size, candidate batches, and per-candidate question
-references. It returns deterministic scores that deliberately reorder candidates,
-so a passing test demonstrates provider-driven ranking rather than accidentally
-passing through local fallback.
-
-## Scenarios
-
-| Scenario | Checked outcome |
-| --- | --- |
-| MCP handshake | All three tools are advertised |
-| Six capability candidates | Two HTTP batches; the last candidate wins on its provider score |
-| Context search | Real local files are retrieved; provider ranking changes their order; paths and original lines survive |
-| Output triage | A later log passage outranks the first; original text, line numbers, and coverage survive |
-| No suitable capability | Low provider scores produce a null recommendation |
-| HTTP 429 after a successful batch | The entire ranking falls back; provider scores are not mixed with lexical scores |
-| Invalid JSON, invalid score, missing answer | Explicit local fallback returns through MCP |
-| Path traversal request | Tool error occurs before any provider request |
-| Stalled HTTP response | The production eight-second timeout triggers fallback |
-| Request after failures | The same running server successfully ranks with the provider again |
-
-For example, the capability test expects `method: "jev"`, model
-`"jev-simulated"`, `api_requests: 2`, and recommendation `"tool-5"` with score
-`0.99`. These are synthetic test fixtures, not a live Jev prediction.
-
-## What this does not prove
-
-This validates the application's MCP-to-HTTP integration and its handling of the
-modeled TypeSafe contract. It does not test TypeSafe's live authentication,
-service behavior, TLS connection, or ranking quality. It also does not launch
-Codex itself, verify plugin UI installation, or establish that an LLM will choose
-to call Jev at the right time. Those require separate live integration checks.
+See [benchmark reproduction](../benchmarks/README.md) for an optional paid live run. Do not infer model accuracy, desktop skill discovery or a general speedup from passing unit tests. The historical security review covers the retired read-only implementation; it is not a security review of this new writing capability.

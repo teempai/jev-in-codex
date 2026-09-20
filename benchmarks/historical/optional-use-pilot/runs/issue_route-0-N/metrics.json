@@ -1,0 +1,19 @@
+{
+  "id": "issue_route-0-N",
+  "task": "issue_route",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 8575.794,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 20675,
+      "cached_input_tokens": 9728,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 195,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:09:21.173Z"
+}

@@ -1,0 +1,8 @@
+{"id": "r-cvkuxka", "text": "An experimental recommendation engine exists on a private branch and is not enabled for any customer."}
+{"id": "r-wdrwme3", "text": "Improve the data pipeline. No behavior, audience or release status is recorded."}
+{"id": "r-a8ssnq4", "text": "The next shipped API rejects a previously accepted field and requires clients to use its replacement."}
+{"id": "r-4a32u4z", "text": "Released: CSV exports now preserve accented customer names that were previously corrupted."}
+{"id": "r-rgsryag", "text": "Rename private helper variables; generated behavior and public interfaces are unchanged."}
+{"id": "r-gg485z6", "text": "Deployed: keyboard users can now close the settings dialog with Escape."}
+{"id": "r-6a56z2r", "text": "A new dashboard widget was implemented, but the note does not say whether it is enabled or released."}
+{"id": "r-hte87hs", "text": "Update a developer-only lint rule without changing distributed code."}

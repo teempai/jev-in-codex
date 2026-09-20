@@ -1,0 +1,20 @@
+{
+  "id": "api_compatibility-0-A",
+  "task": "api_compatibility",
+  "rep": 0,
+  "arm": "A",
+  "inputs_unchanged": true,
+  "elapsed_ms": 14551.853917,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31199,
+      "cached_input_tokens": 19840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 278,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:30:56.784Z"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "issue_route",
+  "area": "coding",
+  "title": "Route engineering issues",
+  "question": "Which engineering owner should receive this issue?",
+  "criteria": {
+    "identity": "Login, session, permissions or account access defects",
+    "billing": "Charges, invoices, subscriptions or refunds",
+    "data": "Import, export, storage or data consistency defects",
+    "interface": "Presentation, navigation or accessibility defects"
+  },
+  "benefit": "Replace serial issue reading with one batch of owner decisions."
+}

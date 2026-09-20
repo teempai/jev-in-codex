@@ -1,0 +1,19 @@
+{
+  "id": "notification_gate-0-N",
+  "task": "notification_gate",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 13216.019708999956,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31266,
+      "cached_input_tokens": 28416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 244,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:17:59.727Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "memory_relevance-0-A",
+  "task": "memory_relevance",
+  "rep": 0,
+  "arm": "A",
+  "elapsed_ms": 8665.90845799999,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18698,
+      "cached_input_tokens": 16768,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 185,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:17:38.523Z"
+}

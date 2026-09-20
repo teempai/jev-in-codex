@@ -1,7 +1,7 @@
 {
   "name": "jev-in-codex",
-  "version": "0.1.0",
-  "description": "Jev-powered capability selection, context search, and output triage for Codex via MCP",
+  "version": "0.2.0",
+  "description": "Benchmark-gated batch labelling with Jev for Codex",
   "type": "module",
   "private": true,
   "license": "MIT",
@@ -20,8 +20,7 @@
     "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
     "test": "npm run build && tsx --test test/*.test.ts",
     "check": "npm run typecheck && npm test",
-    "test:e2e": "npm run build && tsx --test test/e2e.test.ts",
-    "demo": "npm run build && node scripts/demo.mjs"
+    "test:e2e": "npm run build && tsx --test test/e2e.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.0.0",

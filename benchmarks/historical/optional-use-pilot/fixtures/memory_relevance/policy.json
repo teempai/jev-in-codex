@@ -1,0 +1,11 @@
+{
+  "id": "memory_relevance",
+  "area": "general",
+  "title": "Filter memories for the current task",
+  "question": "Would this saved preference materially change how to perform the current task?",
+  "criteria": {
+    "relevant": "Directly constrains or informs the present task",
+    "irrelevant": "Unrelated or explicitly scoped to another situation"
+  },
+  "benefit": "Keep irrelevant saved context out of Codex turns."
+}

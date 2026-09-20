@@ -1,0 +1,19 @@
+{
+  "id": "release_notes-0-N",
+  "task": "release_notes",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 15253.19920799999,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31266,
+      "cached_input_tokens": 19840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 252,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:12:48.795Z"
+}

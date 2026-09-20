@@ -1,0 +1,19 @@
+{
+  "id": "test_selection-0-N",
+  "task": "test_selection",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 8100.410416999999,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 20679,
+      "cached_input_tokens": 9728,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 196,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:10:06.213Z"
+}

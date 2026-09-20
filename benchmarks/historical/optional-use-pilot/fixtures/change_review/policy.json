@@ -1,0 +1,12 @@
+{
+  "id": "change_review",
+  "area": "coding",
+  "title": "Route changes by review risk",
+  "question": "Assign the review lane under this explicit policy, using the actual changed behavior.",
+  "criteria": {
+    "specialist": "Changes authentication, authorization, destructive data operations, financial calculations or public API contracts",
+    "standard": "Changes other runtime behavior without those specialist triggers",
+    "light": "Only comments, documentation, formatting or non-runtime test fixtures change"
+  },
+  "benefit": "Avoid sending every small change through a long review-routing discussion."
+}

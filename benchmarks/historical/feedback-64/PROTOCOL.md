@@ -1,0 +1,13 @@
+# Larger feedback workflow: prospective development protocol
+
+Hypothesis: for a 64-record batch of longer customer feedback, the same artifact plugin can reduce Codex context and/or elapsed time without losing correct labels. Selection of feedback sorting follows the completed negative twenty-case screen and the insufficient 32-record artifact result. This is disclosed adaptive development, not an independent confirmatory trial.
+
+The 64 new synthetic messages cover 16 product areas and four policy labels, 16 records per label, totaling 4268 words. They are distinct authored messages, not random-name copies or duplicates. Their explicit statements of the primary request make them clean examples; they do not represent the ambiguity of unedited real customer messages. Longer prose and batch size change together, so this experiment cannot separately estimate their causal effects. Reference labels were authored and checked by the same agent; no independent human annotation is claimed.
+
+The plugin implementation, Jev model, batching, concurrency, policy and confidence threshold remain exactly as in the corrected artifact round. Codex uses gpt-6-astra, medium reasoning and the same ordinary tools and task in both conditions. Plain Codex writes the complete file itself. The intervention uses actual Jev labels through the packaged plugin and can inspect or correct uncertain records. No local classifier assigns labels. Per-tool approval is limited to the temporary artifact writer; global settings remain unchanged.
+
+Four fresh sessions: two technical repetitions of A and N, with order A,N then N,A. Grade the whole file for exact coverage, allowed fields and every reference label. Audit raw Jev decisions, uncertain review records, high-confidence errors, final corrections, provider requests and all command traces. Keep non-use, failures and slow runs; do not selectively retry. Freeze inputs, keys, scripts, plugin and protocol before starting.
+
+Gate inherited unchanged: all N outputs correct, actual Jev use, at least 20% less paired geometric mean total Codex input or elapsed time, with the other metric no more than 10% worse. Also report cached/uncached/output tokens and provider usage separately. Token reductions are not invoice savings. The two repetitions are not independent datasets; report descriptive results without significance claims. A pass supports this bounded PoC only and does not establish production accuracy or usefulness of all twenty policies.
+
+The earlier small-batch losses and failed permission round remain visible. This batch is separate; no previous result is pooled or relabelled. No global prompt change or publication follows automatically.

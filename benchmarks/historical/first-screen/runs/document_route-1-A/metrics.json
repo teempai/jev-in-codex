@@ -1,0 +1,19 @@
+{
+  "id": "document_route-1-A",
+  "task": "document_route",
+  "rep": 1,
+  "arm": "A",
+  "elapsed_ms": 8119.323749999981,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18684,
+      "cached_input_tokens": 16768,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 184,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:23:09.140Z"
+}

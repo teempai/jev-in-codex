@@ -1,0 +1,13 @@
+{
+  "id": "expense_category",
+  "area": "general",
+  "title": "Categorize expenses by stated policy",
+  "question": "Assign an internal bookkeeping category, not a tax-deductibility decision.",
+  "criteria": {
+    "travel": "Transport or lodging for a stated business trip",
+    "software": "Software subscription or licence",
+    "office": "Physical office equipment or supplies",
+    "review": "Insufficient detail, mixed purchase or outside those categories"
+  },
+  "benefit": "Classify transaction batches and surface uncertain records."
+}

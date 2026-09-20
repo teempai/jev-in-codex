@@ -1,0 +1,19 @@
+{
+  "id": "claim_support-0-N",
+  "task": "claim_support",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 13671.535374999978,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31287,
+      "cached_input_tokens": 28416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 240,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:17:18.290Z"
+}

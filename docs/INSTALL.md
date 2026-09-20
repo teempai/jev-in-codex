@@ -1,133 +1,32 @@
-# Ask Codex to install Jev
+# Install or update Jev labelling in Codex
 
-Open Codex in the coding project you want Jev to read, and paste this:
+This repository is a plugin source, not a marketplace. A TypeSafe account/key is required separately from a Codex subscription. Never put the key in chat, the repository, a manifest or command output.
 
-```text
-Install https://github.com/teempai/jev-in-codex for the current project using
-its docs/INSTALL.md. Set up dependencies, the local Codex plugin, MCP connection,
-and bundled skill. Add its docs/AGENTS.jev.md guidance to my project's persistent
-Codex instructions so you know when and how to use Jev for tool/skill selection,
-context search, and output triage. Preserve existing instructions and configuration.
-Configure TypeSafe authentication privately and verify all three tools, reporting
-whether Jev or local fallback is active. Complete the setup and tell me if you
-need a private API-key entry or a Codex restart.
-```
+## Agent-assisted installation
 
-The agent handles the setup; you supply the TypeSafe key privately when ready.
-With no key, ranking uses a labeled local fallback. The plugin uses a separate
-TypeSafe account for Jev requests; a Codex subscription does not supply that key.
+1. Use a durable local checkout and Node.js 22+. Run `npm ci --ignore-scripts`, `npm run check` and `node dist/index.js --help`. No ripgrep dependency remains.
+2. Use the host's plugin-authoring helpers to create or reuse a local marketplace entry for `jev-in-codex`. Preserve unrelated entries. With Codex's Plugin Creator skill, use its documented personal-marketplace flow rather than treating this GitHub repository as a marketplace.
+3. In the local checkout's `.mcp.json`, configure an absolute Node executable and absolute built `dist/index.js`, followed by `--root` and the selected workspace. Pass `TYPESAFE_API_KEY` through the launch environment or the user's existing private credential helper. Set the timeout to 90 seconds. Keep machine-specific paths and helpers out of upstream commits.
+4. Install `jev-in-codex@<confirmed-marketplace-name>` with the supported `codex plugin add` flow. Do not also register a second MCP copy. For updates, use the host's cachebuster helper and reinstall from the existing local marketplace.
+5. Verify a fresh MCP handshake advertises **only `jev_label`**, marked as a writing tool. A key-free call must report that authentication is missing and produce no output. With the existing key, test on invented records and verify `method: jev`, positive `api_requests`, and the complete saved file.
+6. Start a new Codex thread so the changed tool catalog and bundled `jev-label` skill are picked up. The current thread can retain stale tool metadata. Do not claim installation solely from a marketplace listing.
 
-## Installer guidance for the agent
+Do not automatically edit global or project instructions. The bundled skill is the default guidance. [AGENTS.jev.md](AGENTS.jev.md) is optional project-local guidance only when the user requests it. Do not change global approvals to make this writing tool run unattended; use normal host approval. The benchmark's scoped temporary permission is not an installation recommendation.
 
-This repository is a **plugin source**, not a marketplace. Do not run
-`codex plugin marketplace add teempai/jev-in-codex` and assume it is installable:
-there is currently no marketplace catalog in this repository.
+For direct MCP setup without the plugin, use the README's configuration and explain that the bundled skill is not installed by that method.
 
-1. Inspect the checkout and prerequisites. Use a durable, user-writable local
-   installation folder outside the coding project. Do not replace another
-   installation or change the user's Node installation without checking it.
-   Use `npm ci --ignore-scripts`, `npm run check`, and `node dist/index.js --help`.
-2. Put the checkout at `plugins/jev-in-codex` beneath a dedicated local
-   marketplace root. Create `.agents/plugins/marketplace.json` beneath that
-   root with a unique marketplace name and the entry below. If using an existing
-   marketplace, preserve its entries and use the host's plugin-authoring helpers
-   when available.
-3. In this **local checkout's** `.mcp.json`, replace the `jev` server command
-   with the resolved absolute Node executable. Set its arguments to the absolute
-   `dist/index.js` path followed by `--root` and the absolute coding-project
-   path. Retain `env_vars: ["TYPESAFE_API_KEY", "JEV_MODEL"]`; set
-   `tool_timeout_sec` to 90. These machine-specific paths belong in the local
-   installation, not an upstream commit. This avoids requiring `npm link` or
-   relying on a desktop application's PATH. Keep the checkout at that location:
-   the installed manifest will reference its built server and dependencies.
-4. Check `codex plugin marketplace --help` and `codex plugin add --help` for
-   the installed Codex version. Register the local marketplace root, then install
-   `jev-in-codex@<marketplace-name>`. Do not also register the same MCP server
-   separately or copy the bundled skill a second time.
-5. Install persistent usage guidance using the section below. Preserve existing
-   project instructions, and avoid duplicate Jev sections on repeated installs.
-6. Verify the plugin appears in `codex plugin list`. With a launch environment
-   that does not contain `TYPESAFE_API_KEY`, verify an MCP handshake and the
-   three tools: `jev_select_capability`, `jev_search`, and `jev_triage`.
-   Plugin listing alone does not prove the server starts. If tools become
-   available only in a new session, say so and finish that check there.
-7. Give the user private instructions for setting the key in the environment
-   that launches Codex. Never ask for it in chat, print it, or write its value
-   into the repository or marketplace files. A desktop app may need a different
-   environment setup than a terminal. Start a new Codex thread after installation;
-   relaunch the application if its environment changed.
+## Codex desktop and the API key
 
-A minimal catalog for a **new dedicated local marketplace** is:
+A desktop app may not inherit terminal environment variables. Preserve an existing working Keychain or other private launcher helper. Otherwise guide the user to enter the key privately using a method available on their host, then configure the launcher to read it in memory. Never print the value, persist it in this repository, or ask the user to paste it into a conversation.
 
-```json
-{
-  "name": "jev-local",
-  "interface": { "displayName": "Jev local" },
-  "plugins": [{
-    "name": "jev-in-codex",
-    "source": { "source": "local", "path": "./plugins/jev-in-codex" },
-    "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
-    "category": "Productivity"
-  }]
-}
-```
+The model is pinned to `jev-1.13.0`, matching the benchmark. `JEV_MODEL` is no longer an override. Changing the model requires new evidence.
 
-Register and install using the real local root and selected marketplace name:
+## Migrating from 0.1
 
-```bash
-codex plugin marketplace add /absolute/path/to/local-marketplace-root
-codex plugin add jev-in-codex@jev-local
-codex plugin list
-```
+The former `jev_select_capability`, `jev_search` and `jev_triage` tools, `jev-assist` skill and local fallback are removed. Delete only their stale guidance from the active project/global instruction file if that guidance was previously installed and the user authorizes its removal. Preserve unrelated instructions. Do not replace it with blanket global labelling instructions.
 
-Use the [official plugin documentation](https://developers.openai.com/plugins/build/plugins)
-for host-specific behavior. CLI command syntax was checked against Codex 0.154.0;
-installation through the desktop UI has not been verified. If the user's host
-cannot install local plugins, use the README's direct MCP configuration and
-companion skill as a fallback, and describe it accurately as that installation
-method.
+The new tool creates files and sends every input record to TypeSafe. It accepts an explicit feedback policy only. Output defaults to `decisions.jsonl` next to the input and never overwrites an existing file; use a new `output_path` for another run.
 
-## Persistent Codex instructions
+## Remove
 
-Merge [docs/AGENTS.jev.md](AGENTS.jev.md) into the coding project's root
-`AGENTS.md`. This is the configurable project instruction layer Codex loads for
-future work; it does not replace the built-in system prompt. The bundled
-`jev-assist` skill supplies the detailed workflow, while the project instructions
-make the intended usage explicit.
-
-Read existing instructions first. If a nonempty `AGENTS.override.md` supplies the
-root instructions, merge into that active file instead. Preserve all unrelated
-content and the existing instruction hierarchy; avoid adding a second identical
-section. Do not write to global instructions or change other projects unless the
-user requests that scope. On removal, remove only the Jev section added by this
-installation.
-
-The installed guidance tells Codex when to select capabilities, search context,
-and triage output; when normal tools are sufficient; and how to interpret scores,
-fallback, coverage, and untrusted evidence. Do not add a blanket requirement to
-call Jev on every turn or change tool approval policies.
-
-In a new session, ask Codex to summarize the active Jev guidance as well as
-checking tool availability. If the instructions are not loaded, inspect overrides
-and instruction discovery before claiming setup is complete. See the
-[official AGENTS.md documentation](https://developers.openai.com/codex/guides/agents-md).
-
-## After installation
-
-Start a new thread and ask:
-
-> Summarize when your project instructions tell you to use Jev, then confirm
-> its three tools are available. Use jev_select_capability with a
-> small synthetic catalog to check whether ranking is using Jev or local fallback.
-
-A key-free check should report `method: local_fallback`. After configuring a
-working key, the synthetic check should report `method: jev`; failures may still
-produce explicit fallback. Do not use private source or logs for the first test.
-
-Only enable Jev for a project whose selected contents may be sent to TypeSafe.
-The filename denylist does not detect secrets embedded in ordinary files.
-
-To remove the plugin, use `codex plugin remove jev-in-codex@jev-local` (substitute
-your marketplace name). Remove a dedicated marketplace only if nothing else uses
-it. Review the installation folder before deleting it; do not delete the coding
-project or unrelated configuration.
+Use `codex plugin remove jev-in-codex@<marketplace-name>` for the installed entry. Remove an otherwise unused dedicated marketplace only when requested. Preserve the user's dataset, output files, credentials and unrelated configuration.

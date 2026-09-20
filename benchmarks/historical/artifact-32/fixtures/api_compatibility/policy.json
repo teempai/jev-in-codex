@@ -1,0 +1,12 @@
+{
+  "id": "api_compatibility",
+  "area": "coding",
+  "title": "Detect API compatibility changes",
+  "question": "Does the proposed API change break an existing valid client under the stated contract?",
+  "criteria": {
+    "breaking": "Previously valid calls or required response assumptions cease to work",
+    "compatible": "Existing valid clients remain valid under the stated contract",
+    "unknown": "The necessary compatibility contract is unspecified"
+  },
+  "benefit": "Find contract changes in release diffs before detailed review."
+}

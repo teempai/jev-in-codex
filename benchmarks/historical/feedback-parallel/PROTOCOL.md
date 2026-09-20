@@ -1,0 +1,9 @@
+# Eight-way Jev request concurrency development test
+
+The preceding larger-feedback result had fully correct output and 21.8% less Codex input, but 10.6% more elapsed time, narrowly failing the unchanged gate. Retain that failure. Provider traces show about 1.35–1.45 seconds of artifact-tool work, partly due to two sequential groups of four requests. The concrete hypothesis is that eight concurrent independent Jev requests reduce that tool component without changing any decisions, thresholds or task requirements. This is a limited potential saving: most session time lies outside the provider.
+
+The isolated artifact-parallel plugin differs from artifact-poc only in identity/manifest transport and the request-wave size (four to eight). A mock concurrency test verifies eight simultaneous provider requests for 64 records and label delegation. Existing serialization/overwrite tests pass. No deployed plugin, global instruction or credential is changed.
+
+Reuse the 64-record development dataset and its frozen gold. This is runtime tuning on known development data, not held-out confirmation. Fresh plain-Codex and plugin conditions alternate order across four repetitions, totaling eight sessions. Four repeats still do not establish population accuracy or statistical significance. Do not stop early, drop slow runs, retry answer failures, or pool previous outcomes into these ratios.
+
+All other settings and evaluation rules inherit PROTOCOL.md. In particular, the same gate requires actual Jev use, all N outputs correct, at least 20% less paired geometric mean total Codex input or elapsed time, and no more than 10% worsening of the other measure. Inspect all files and raw labels. Report tool latency, provider usage, final time, input/cache/output usage and all failures. No cost, desktop adoption or general production claim follows automatically.

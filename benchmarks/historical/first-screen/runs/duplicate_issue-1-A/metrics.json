@@ -1,0 +1,19 @@
+{
+  "id": "duplicate_issue-1-A",
+  "task": "duplicate_issue",
+  "rep": 1,
+  "arm": "A",
+  "elapsed_ms": 7717.568250000011,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18758,
+      "cached_input_tokens": 16768,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 180,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:18:53.299Z"
+}

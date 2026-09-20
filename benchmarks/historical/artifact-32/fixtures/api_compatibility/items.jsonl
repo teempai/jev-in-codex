@@ -1,0 +1,32 @@
+{"id": "item-z69fzent", "text": "An existing numeric amount field changes from dollars to cents with the same field name and no version or unit marker."}
+{"id": "item-gyq92y34", "text": "The API now requires mutual TLS certificates from callers that were previously valid using only the documented API key."}
+{"id": "item-82n93q8k", "text": "An endpoint that previously accepted the documented status value pending now rejects pending and requires queued instead."}
+{"id": "item-pvg6frw5", "text": "A new authorization layer is added. Its effect on previously authorized clients is not described."}
+{"id": "item-23fpu336", "text": "A previously optional request field remains optional with the same default; its documentation now includes an additional example."}
+{"id": "item-z6zderhe", "text": "The old contract guarantees records sorted by increasing sequence. The same endpoint now sorts by decreasing sequence without an option."}
+{"id": "item-cr36n3w6", "text": "The response becomes faster, but a note also says timeouts changed without specifying the values or contract."}
+{"id": "item-7mh2n8fs", "text": "The implementation switches database drivers while preserving every public request, response and error contract."}
+{"id": "item-c6p7zecr", "text": "The response previously guaranteed unique IDs across all tenants. It now reuses IDs in different tenants without exposing tenant information."}
+{"id": "item-jmhnkayv", "text": "A response property is renamed, but it is not stated whether that property was part of the public contract or ever returned to clients."}
+{"id": "item-x6gbmktq", "text": "A private internal function is renamed. Network request and response behavior remains byte-for-byte identical."}
+{"id": "item-683adhka", "text": "The API adds a new opt-in version while preserving the current version and its complete behavior for existing clients."}
+{"id": "item-xw7m2uvw", "text": "The public response field active changes from Boolean true/false to strings yes/no. Existing valid clients require a Boolean."}
+{"id": "item-xm457a7g", "text": "The server adds an optional request flag whose documented default reproduces all existing behavior."}
+{"id": "item-te6qcrrq", "text": "A deprecation warning is added to documentation only. The endpoint continues honoring its full published contract."}
+{"id": "item-sbjyuw3j", "text": "An endpoint moves to a new address. The note does not say whether the old address redirects or remains available."}
+{"id": "item-nqgq8crs", "text": "A success response changes from HTTP 200 with a JSON object to HTTP 204 with no body. Valid clients are documented to consume the object."}
+{"id": "item-5yx8k67z", "text": "The minimum accepted password length rises from 8 to 12 for an existing API with no version change. Previously accepted 8-character registrations are rejected."}
+{"id": "item-s67nzntb", "text": "The published list endpoint previously returned every item. It now silently returns only the first 20, and the existing response has no pagination metadata."}
+{"id": "item-vmccq6mt", "text": "The server accepts an additional date format while preserving acceptance and meaning of every previously valid format."}
+{"id": "item-b3vabsk2", "text": "A limit parameter accepts a wider range than before; all previously valid values still produce exactly the same result."}
+{"id": "item-vauk8bpc", "text": "The API adds another accepted enum value; existing request values and every existing response value remain unchanged."}
+{"id": "item-sgyazgz2", "text": "The dependency upgrade says strict parsing enabled. No old or new parsing behavior or public inputs are described."}
+{"id": "item-m6zvv9v9", "text": "The old public API allowed a client to retry the same idempotency key and receive its prior result. The new API creates a new payment for each retry."}
+{"id": "item-36uramc3", "text": "The response schema is described as modernized, but no field definitions or examples are provided."}
+{"id": "item-q4m6a8jc", "text": "The service no longer returns null for a field. The old field contract and replacement value are absent."}
+{"id": "item-gezp997u", "text": "A new optional header allows callers to request verbose diagnostics. Omitting it preserves the exact existing response."}
+{"id": "item-984yt7j2", "text": "A pagination bug is fixed only for inputs explicitly documented as invalid; all valid inputs retain their defined behavior."}
+{"id": "item-hdjbsu5r", "text": "Add a new /health endpoint without modifying existing endpoints, authentication requirements or responses."}
+{"id": "item-7qppy3rs", "text": "A documented unlimited string field now rejects inputs longer than 64 characters; longer strings were previously valid."}
+{"id": "item-myczh736", "text": "A signed download link promised to remain valid for 24 hours now expires after 10 minutes, without any change to the requested expiry."}
+{"id": "item-sfg7ypzn", "text": "A request body field is removed from examples, but no information establishes whether the server still accepts it."}

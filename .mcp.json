@@ -5,9 +5,9 @@
       "args": [],
       "env_vars": [
         "TYPESAFE_API_KEY",
-        "JEV_WORKSPACE_ROOT",
-        "JEV_MODEL"
-      ]
+        "JEV_WORKSPACE_ROOT"
+      ],
+      "tool_timeout_sec": 90
     }
   }
 }

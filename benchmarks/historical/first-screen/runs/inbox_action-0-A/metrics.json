@@ -1,0 +1,19 @@
+{
+  "id": "inbox_action-0-A",
+  "task": "inbox_action",
+  "rep": 0,
+  "arm": "A",
+  "elapsed_ms": 8965.097291999991,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18725,
+      "cached_input_tokens": 16768,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 176,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:14:46.117Z"
+}

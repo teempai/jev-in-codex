@@ -1,3 +1,5 @@
+> Historical review of the retired 0.1 read-only capabilities. This report does not cover the 0.2 labelling writer.
+
 # Security Review: teempai/jev-in-codex
 
 ## Scope

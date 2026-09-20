@@ -1,0 +1,12 @@
+{
+  "id": "claim_support",
+  "area": "general",
+  "title": "Check whether evidence supports a claim",
+  "question": "Does the supplied source establish, contradict or leave open the claim?",
+  "criteria": {
+    "supported": "The source explicitly entails the claim",
+    "contradicted": "The source explicitly conflicts with the claim",
+    "unknown": "Evidence is missing, narrower than the claim or only speculative"
+  },
+  "benefit": "Catch unsupported statements before Codex writes a summary."
+}

@@ -1,265 +1,73 @@
-# jev-in-codex
+# Jev in Codex
 
-Use [Jev](https://docs.typesafe.ai/) to rank capabilities and evidence inside
-an existing Codex workflow. A local MCP server exposes three tools; a companion
-skill explains when to use them.
+A Codex plugin for **batch labelling with Jev**. It turns a JSONL file of customer feedback into a complete labelled file, while Codex reviews uncertain decisions.
 
-**Status: experimental MVP.** Functional protocol and boundary tests are
-included. Ranking quality and time/token savings have not been benchmarked.
-This is an independent integration, not an official OpenAI or TypeSafe product.
+**One tool: `jev_label`. One admitted policy: `feedback_theme`.** The previous capability-selection, context-search and output-triage tools have been removed because their tested workflows did not show a useful improvement. There is no lexical or local-classifier fallback.
 
-## What it does
+## Why this capability is included
 
-| Tool | Input | Output |
-| --- | --- | --- |
-| `jev_select_capability` | Objective and a supplied catalog of tools/skills | Ranked candidates, with an option to recommend none |
-| `jev_search` | Question, workspace scope, optional query terms | Reranked code/docs excerpts with paths and line numbers |
-| `jev_triage` | Question and a saved output artifact | Relevant original excerpts, exact duplicate groups, and coverage |
+The release benchmark on 64 synthetic feedback messages measured **42.7% less total Codex input and 26.4% less elapsed time**, with all labels correct across four paired runs. Tiny batches performed worse in the earlier sweep.
 
-Codex supplies the objective and makes the final decision. The server retrieves
-bounded candidates locally, asks Jev relevance questions, and returns original
-evidence. It neither executes selected capabilities nor intercepts arbitrary
-Codex tool calls. It does not replace Codex compaction or expose Codex's internal
-context/tool catalog.
+The [benchmark report](benchmarks/README.md) includes the shipped implementation check, prototype results, methods, complete artifacts and negative results. This is exploratory verification on known synthetic development data, not independent confirmation. It does not prove real-world accuracy, general labelling superiority, invoice savings or automatic desktop adoption.
 
-```text
-Codex → MCP tool → local candidates → Jev relevance evaluation
-                 ← ranked original evidence + coverage ←
+**From this release onward, new capabilities and policies require a passing, reviewable benchmark against plain Codex before being exposed.** See [the admission policy](benchmarks/POLICY.md).
+
+## Use
+
+Prepare an approved UTF-8 JSONL file inside the configured workspace:
+
+```jsonl
+{"id":"feedback-1","text":"Saved reports disappear after reopening. Please preserve them."}
+{"id":"feedback-2","text":"Please offer a cheaper plan for occasional users."}
 ```
 
-The first triage version ranks passages and groups identical chunks. Semantic
-failure grouping and root-cause classification are future work.
+Call:
 
-## Demo
+```json
+{"path":"feedback/items.jsonl","policy":"feedback_theme"}
+```
 
-![Animated local demo showing capability selection, source search, and log triage](docs/assets/jev-demo.gif)
+The tool creates `feedback/decisions.jsonl`, containing every original ID and one label:
 
-Animated replay of actual MCP results using synthetic data and simulated TypeSafe
-responses. Playback is paced for readability; this is not a live Codex UI capture
-or a latency benchmark. [Static preview](docs/assets/jev-demo.png).
+```jsonl
+{"id":"feedback-1","label":"reliability"}
+{"id":"feedback-2","label":"pricing"}
+```
+
+These examples explain the format; a two-record batch is not the benchmarked use case. Labels are `reliability`, `usability`, `pricing` and `feature`. The response includes the policy, counts, model, request count, output path, and original text for decisions below confidence 0.8. Codex can correct that file after review. Above-threshold confidence does not guarantee correctness.
+
+Use `output_path` to choose another new relative file. Existing files are never overwritten. Both input and output stay inside the configured workspace; the output parent must exist. Input accepts 1–256 records, unique IDs of up to 100 letters/digits/underscore/hyphen, nonempty text up to 6,000 characters per record, and no extra fields. Files are limited to 1 MiB. These are operational limits, not validated performance ranges.
 
 ## Install
 
-Give this prompt to your Codex session, opened in the project you want to use:
+Ask Codex:
 
-```text
-Install https://github.com/teempai/jev-in-codex for the current project using
-its docs/INSTALL.md. Set up dependencies, the local Codex plugin, MCP connection,
-and bundled skill. Add its docs/AGENTS.jev.md guidance to my project's persistent
-Codex instructions so you know when and how to use Jev for tool/skill selection,
-context search, and output triage. Preserve existing instructions and configuration.
-Configure TypeSafe authentication privately and verify all three tools, reporting
-whether Jev or local fallback is active. Complete the setup and tell me if you
-need a private API-key entry or a Codex restart.
-```
+> Install https://github.com/teempai/jev-in-codex using docs/INSTALL.md, configure my workspace and TypeSafe key privately, and verify that only jev_label is available. Preserve existing instructions. Do not add global instructions.
 
-Jev uses a TypeSafe API key and sends selected code/log excerpts to TypeSafe.
-Codex handles setup; you may need to enter the key privately or restart Codex.
+See [installation and migration](docs/INSTALL.md). Node.js 22+ is required; ripgrep is no longer required. Build with `npm ci --ignore-scripts && npm run check`. Set `TYPESAFE_API_KEY` privately and pass `--root` or `JEV_WORKSPACE_ROOT`. The model is pinned to the benchmarked `jev-1.13.0`; the old `JEV_MODEL` override is no longer used.
 
-<details>
-<summary>Manual installation and configuration</summary>
-
-## Install from source
-
-Requires **Node.js 22+**, **npm**, and **ripgrep (`rg`)** on PATH.
-
-```bash
-git clone https://github.com/teempai/jev-in-codex.git
-cd jev-in-codex
-npm ci --ignore-scripts
-npm run check
-```
-
-There is no published npm package yet. `private: true` prevents accidental npm
-publication; the source is publicly available under MIT.
-
-### Configure Codex MCP
-
-Add an entry to your Codex `config.toml`, substituting both absolute paths:
+For direct MCP configuration, resolve the Node and built-server paths on your machine:
 
 ```toml
 [mcp_servers.jev]
-command = "node"
-args = ["/absolute/path/to/jev-in-codex/dist/index.js", "--root", "/absolute/path/to/your-project"]
-env_vars = ["TYPESAFE_API_KEY", "JEV_MODEL"]
+command = "/absolute/path/to/node"
+args = ["/absolute/path/to/jev-in-codex/dist/index.js", "--root", "/absolute/workspace"]
+env_vars = ["TYPESAFE_API_KEY"]
 tool_timeout_sec = 90
 ```
 
-Export `TYPESAFE_API_KEY` in the environment that launches Codex. Obtain the key
-from TypeSafe; don't put it in source control or a prompt. Optionally set
-`JEV_MODEL` to a pinned model name; the default is `jev-latest`.
+Prefer the plugin installation for its bundled skill. Do not register both copies. The tool writes a file, so normal host approval may apply. Installation does not change global approval policy or persistent global instructions.
 
-The root is mandatory, so the server cannot silently scan an unintended working
-directory. Change `--root` for another project, or omit it and set
-`JEV_WORKSPACE_ROOT` and include that name in `env_vars`. An explicit `--root`
-takes precedence. Use an absolute Node executable path if your Codex launch
-environment cannot find `node`.
+## Data and failure handling
 
-Without a TypeSafe key, all tools work in **local fallback mode**. This supports
-setup checks but does not demonstrate Jev's ranking quality. Normal Codex access
-and billing are unchanged. Jev requests use a separate TypeSafe API account;
-this integration does not route them through a Codex subscription.
+Every input record and the fixed policy are sent over HTTPS to `https://api.typesafe.ai/v1/systemone`. Jev makes the decisions; local code only validates, batches, serializes and selects uncertain records for review. Up to eight requests run concurrently, with at most eight questions per request and a 28,000-byte body budget. Requests have an eight-second timeout and a twenty-second total inference deadline.
 
-See the [Codex MCP documentation](https://developers.openai.com/codex/mcp/) for
-configuration and server visibility in your client.
+Missing credentials, malformed responses or a failed batch produce an explicit error and no labelled output. No local labels replace Jev results. Existing outputs, traversal, escaping symlinks, common credential paths, invalid UTF-8, binary and oversized input are rejected. Provider error bodies are not exposed. The production server has no content logs, telemetry or persistent cache.
 
-### Add the companion skill
+Filename exclusions are best-effort, not secret detection. Use only data authorized for TypeSafe. This local path boundary is not a sandbox against concurrent malicious filesystem changes. Labels are advisory and never authorize external actions. See the [testing guide](docs/TESTING.md); the [older security review](docs/security-review-2026-09-19/report.md) covers the retired implementation, not this new writing capability.
 
-Copy `skills/jev-assist` into your coding project's `.agents/skills/` directory
-(or your personal skills directory), then start a new Codex session. For example,
-from this repository:
+## Development
 
-```bash
-mkdir -p /absolute/path/to/your-project/.agents/skills
-cp -R skills/jev-assist /absolute/path/to/your-project/.agents/skills/
-```
+[Contributing](CONTRIBUTING.md) · [Benchmark report and reproduction](benchmarks/README.md) · [Capability admission policy](benchmarks/POLICY.md)
 
-Review an existing skill directory before replacing it. The skill uses Jev only
-when selection or filtering is useful; simple exact searches stay with `rg`.
-
-### Optional plugin packaging
-
-The repository includes a legacy-compatible `.codex-plugin/plugin.json` and
-`.mcp.json` bundling the same skill and MCP server. For local plugin development,
-run `npm link` after building so `jev-in-codex` is on PATH. Set
-`JEV_WORKSPACE_ROOT` to the coding project and export `TYPESAFE_API_KEY` in the
-Codex launch environment. The manifest forwards these variables to the server.
-
-You can then add the clone to your own Codex plugin marketplace using the
-[plugin authoring workflow](https://developers.openai.com/plugins/build/plugins).
-The direct MCP configuration above is the tested transport path. Plugin UI
-installation is not yet end-to-end verified, and a plugin install does not
-install Node, dependencies, or ripgrep. Choose one installation path to avoid
-duplicate tools/skills. This repository is not listed in the public plugin
-directory and does not modify your Codex configuration automatically.
-
-</details>
-
-## Examples
-
-Ask Codex: “Use Jev to select between these available capabilities for tracing
-why requests time out.” The MCP call can look like:
-
-```json
-{
-  "objective": "Trace the source of request timeouts",
-  "candidates": [
-    { "id": "read_logs", "kind": "tool", "description": "Read recent request logs with timestamps and errors" },
-    { "id": "design_assets", "kind": "skill", "description": "Create visual assets for the interface" }
-  ],
-  "limit": 2
-}
-```
-
-The caller must supply real available IDs and descriptions. The server cannot
-see Codex's complete tool or skill catalog automatically.
-
-Search for implementation context:
-
-```json
-{
-  "question": "Where is retry backoff implemented for outgoing requests?",
-  "scope": ["src"],
-  "query_terms": ["retry", "backoff", "timeout"],
-  "limit": 5
-}
-```
-
-Triage output already saved inside the workspace:
-
-```json
-{
-  "question": "Which failures explain why the database integration tests failed?",
-  "artifact_path": "test-output.txt",
-  "limit": 4
-}
-```
-
-For example, in Bash, capture a command's output without losing its status:
-
-```bash
-set -o pipefail
-npm test 2>&1 | tee test-output.txt
-```
-
-The triage tool reads the artifact; it does not run the command. Use `start_line`
-and `end_line` to select a relevant range. Outputs preserve source locations so
-Codex can inspect surrounding evidence before acting.
-
-## Behavior and limits
-
-- **Ranking:** independent Jev `noul` relevance questions, batched four candidates
-  per request. Up to 24 candidates per operation, eight-second timeout per request,
-  28,000-byte request cap, no automatic retries. Capability recommendations require
-  a Jev score of at least 0.5; this is a provisional heuristic, not calibrated.
-- **Fallback:** absent key, provider errors, invalid answers, or a failed batch
-  cause the entire ranking to use lexical overlap. `method`, `score_kind`,
-  `fallback_reason`, and `api_requests` make this visible. Local scores are not
-  model probabilities. Successful responses identify the provider's model when
-  returned. Scores are advisory in both modes.
-- **Search:** ripgrep file discovery respects ignore rules, then local lexical
-  matching builds a shortlist of at most 24 excerpts. At most 500 eligible files
-  and approximately 20 MiB are scanned per call (the final file may cross the
-  byte threshold). Search is not a semantic index. Coverage reports unread,
-  skipped, matched, and shortlisted data. Broaden query terms or narrow scope
-  when recall is insufficient.
-- **Artifacts:** regular UTF-8 text files up to 1 MiB; null bytes are rejected.
-  Excerpts preserve complete lines, with at most 30 lines and 4,000 bytes each.
-  Oversized lines are rejected during triage; such files are skipped in search.
-  There is no chunk overlap, so read surrounding lines when evidence crosses
-  boundaries. Line range selection happens after the 1 MiB file check.
-- **Triage:** all chunks in the requested range are grouped by exact text. When
-  more than 24 distinct chunks remain, lexical matching selects the shortlist.
-  Counts disclose unexamined chunks. At most 20 occurrence locations per group
-  are returned, alongside the full count and omitted-location count. Identical excerpts are not proof that two
-  failures share a cause; unchanged originals remain on disk.
-- **Returned context:** at most ten excerpts or capabilities per response. A
-  truncated shortlist never establishes that omitted evidence is irrelevant.
-- **Scope:** relative paths only; resolved paths must stay within the configured
-  root. Common dependency/build directories and credential filenames are excluded.
-  Explicit artifact reads may access gitignored files, while search respects
-  ignore rules. Configure a narrow project root, not your home directory.
-
-## Data handling
-
-With `TYPESAFE_API_KEY` configured, objectives, supplied capability descriptions,
-and shortlisted source/log excerpts are sent over HTTPS to
-`https://api.typesafe.ai/v1/systemone`. Search initially reads files locally;
-only its shortlist is sent. Triage reads and groups the requested range locally
-before sending its shortlist. No remote endpoint override is provided.
-
-Filename exclusions are best-effort and do not detect secrets inside ordinary
-files. Only use the integration with content approved for TypeSafe. Retrieved
-content can contain prompt injection; ranking cannot establish that it is safe
-to execute. This server is a local convenience boundary, not a sandbox against
-concurrent malicious filesystem modification. It has no telemetry, persistent
-cache, or content logging of its own. TypeSafe's handling of API data is governed
-by its own service terms. Provider error bodies are not exposed in tool results.
-
-## Security review
-
-The [2026-09-19 static security review](docs/security-review-2026-09-19/report.md)
-found no confirmed reportable vulnerabilities in the initial implementation.
-The report records the reviewed commit, trust assumptions, hardening opportunities,
-and exclusions. It is not a security guarantee or a live dependency advisory scan.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development, local testing, and
-benchmarking guidance.
-
-## License and credits
-
-[MIT](LICENSE). This small integration uses a permissive license to make adoption
-and reuse straightforward. Apache-2.0 would add an explicit contributor patent
-grant and additional notice requirements; it is a reasonable alternative for a
-larger patent-sensitive project. See the [MIT text](https://opensource.org/license/mit)
-and [Apache-2.0 text](https://www.apache.org/licenses/LICENSE-2.0).
-
-Inspired by [fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction)
-and the TypeSafe Jev approach to bounded decisions. This repository implements
-its own integration; it does not include that project's compactor code.
-
-References: [TypeSafe API](https://docs.typesafe.ai/api),
-[MCP TypeScript SDK](https://ts.sdk.modelcontextprotocol.io/),
-[Codex MCP](https://developers.openai.com/codex/mcp/).
+[MIT](LICENSE). Inspired by the TypeSafe Jev approach to bounded decisions and [fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction); this repository does not include that project's compactor code.

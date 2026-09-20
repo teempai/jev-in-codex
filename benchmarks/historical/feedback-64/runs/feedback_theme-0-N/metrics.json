@@ -1,0 +1,20 @@
+{
+  "id": "feedback_theme-0-N",
+  "task": "feedback_theme",
+  "rep": 0,
+  "arm": "N",
+  "inputs_unchanged": true,
+  "elapsed_ms": 13445.554916000001,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31827,
+      "cached_input_tokens": 20608,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 119,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:42:33.137Z"
+}

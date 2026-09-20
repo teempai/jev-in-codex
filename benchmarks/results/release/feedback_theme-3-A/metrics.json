@@ -1,0 +1,18 @@
+{
+  "id": "feedback_theme-3-A",
+  "rep": 3,
+  "arm": "A",
+  "code": 0,
+  "timedOut": false,
+  "inputs_unchanged": true,
+  "elapsed_ms": 13756.885832999993,
+  "usage": [
+    {
+      "input_tokens": 40984,
+      "cached_input_tokens": 32640,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 286,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

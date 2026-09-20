@@ -1,0 +1,19 @@
+{
+  "id": "expense_category-1-N",
+  "task": "expense_category",
+  "rep": 1,
+  "arm": "N",
+  "elapsed_ms": 13426.935667000012,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31483,
+      "cached_input_tokens": 28672,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 258,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:23:44.857Z"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "doc_consistency",
+  "area": "coding",
+  "title": "Detect code\u2013documentation mismatch",
+  "question": "Compare the supplied documentation claim with the explicit implementation behavior.",
+  "criteria": {
+    "consistent": "The implementation supports the claim",
+    "conflict": "The implementation contradicts the claim",
+    "unknown": "The supplied implementation evidence cannot settle the claim"
+  },
+  "benefit": "Identify mismatches without reading every document and code pair in Codex."
+}

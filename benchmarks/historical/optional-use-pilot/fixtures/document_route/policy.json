@@ -1,0 +1,13 @@
+{
+  "id": "document_route",
+  "area": "general",
+  "title": "Route incoming documents",
+  "question": "Which processing queue matches the document purpose?",
+  "criteria": {
+    "payable": "Invoice requesting payment for supplied goods or services",
+    "agreement": "Contract or amendment setting obligations between parties",
+    "meeting": "Agenda or minutes recording a meeting",
+    "other": "None of the listed purposes"
+  },
+  "benefit": "Sort a document inbox before specialist reading."
+}

@@ -1,0 +1,8 @@
+{"id": "r-jrrfyaw", "text": "Change: normalize Unicode names before storing them. Test: export and reimport accented names without corruption; export reads stored names."}
+{"id": "r-88dwck7", "text": "Change: update French help text only. Test: English encryption-key rotation; no code or keys were changed."}
+{"id": "r-pyt275k", "text": "Change: modify common/helpers.ts. Test: integration-smoke. No function names or dependency information are supplied."}
+{"id": "r-wtqxkqw", "text": "Change: money rounding now occurs after summing lines. Test: invoice totals for multiple fractional line amounts."}
+{"id": "r-rjpea5b", "text": "Change: alter tooltip display timing. Test: verify database backup retention for six months; no shared code path exists."}
+{"id": "r-sdraywq", "text": "Change: refactor the transport abstraction. Test: payment scenario. Whether payments use that abstraction is not recorded."}
+{"id": "r-mr5x95t", "text": "Change: refresh tokens become single-use. Test: two concurrent renewals with the same token must permit only one success."}
+{"id": "r-dtsb9fx", "text": "Change: add a CSV delimiter option. Test: verify password reset expiry; the modules have no shared dependency."}

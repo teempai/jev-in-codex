@@ -1,0 +1,19 @@
+{
+  "id": "entity_match-0-N",
+  "task": "entity_match",
+  "rep": 0,
+  "arm": "N",
+  "elapsed_ms": 11581.141166999994,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31525,
+      "cached_input_tokens": 28544,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 253,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:16:06.141Z"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "meeting_commitment",
+  "area": "general",
+  "title": "Detect actual meeting commitments",
+  "question": "Does this excerpt create an outstanding commitment for Mira?",
+  "criteria": {
+    "committed": "Mira explicitly accepts a specific task that remains outstanding",
+    "proposed": "A task is suggested or requested but Mira has not accepted",
+    "none": "No task for Mira, or it was explicitly cancelled or completed"
+  },
+  "benefit": "Extract a reliable task queue from many meeting excerpts."
+}

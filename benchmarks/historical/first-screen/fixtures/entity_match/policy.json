@@ -1,0 +1,12 @@
+{
+  "id": "entity_match",
+  "area": "general",
+  "title": "Resolve duplicate organization records",
+  "question": "Do these two records identify the same legal organization?",
+  "criteria": {
+    "same": "Matching reliable identifiers or an explicit alias link establish identity",
+    "different": "Conflicting reliable identifiers establish different organizations",
+    "unknown": "Name similarity alone or insufficient identifiers"
+  },
+  "benefit": "Reduce manual comparison of noisy entity pairs."
+}

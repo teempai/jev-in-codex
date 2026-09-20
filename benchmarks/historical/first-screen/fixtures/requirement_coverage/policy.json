@@ -1,0 +1,12 @@
+{
+  "id": "requirement_coverage",
+  "area": "coding",
+  "title": "Check acceptance-criterion coverage",
+  "question": "Does the supplied test evidence cover the stated acceptance criterion?",
+  "criteria": {
+    "covered": "Explicit tests establish all stated parts",
+    "partial": "Tests establish only some stated parts",
+    "missing": "No supplied test establishes the criterion"
+  },
+  "benefit": "Turn repetitive evidence matching into a batch decision."
+}

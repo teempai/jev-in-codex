@@ -1,0 +1,270 @@
+[
+  {
+    "id": "api_compatibility",
+    "prompt": "Classify every record in items.jsonl under the api_compatibility policy. Write decisions.jsonl with exactly one JSON object per input record, containing only id and label. Keep original IDs. Do not modify input files or take external actions. Return the output filename and number of records. The authoritative decision policy is supplied here so no separate policy-file read is needed: {\"question\": \"Does the proposed API change break an existing valid client under the stated contract?\", \"criteria\": {\"breaking\": \"Previously valid calls or required response assumptions cease to work\", \"compatible\": \"Existing valid clients remain valid under the stated contract\", \"unknown\": \"The necessary compatibility contract is unspecified\"}}",
+    "expected": [
+      {
+        "id": "item-s67nzntb",
+        "label": "breaking"
+      },
+      {
+        "id": "item-hdjbsu5r",
+        "label": "compatible"
+      },
+      {
+        "id": "item-jmhnkayv",
+        "label": "unknown"
+      },
+      {
+        "id": "item-xw7m2uvw",
+        "label": "breaking"
+      },
+      {
+        "id": "item-23fpu336",
+        "label": "compatible"
+      },
+      {
+        "id": "item-5yx8k67z",
+        "label": "breaking"
+      },
+      {
+        "id": "item-vmccq6mt",
+        "label": "compatible"
+      },
+      {
+        "id": "item-sgyazgz2",
+        "label": "unknown"
+      },
+      {
+        "id": "item-82n93q8k",
+        "label": "breaking"
+      },
+      {
+        "id": "item-gezp997u",
+        "label": "compatible"
+      },
+      {
+        "id": "item-cr36n3w6",
+        "label": "unknown"
+      },
+      {
+        "id": "item-z6zderhe",
+        "label": "breaking"
+      },
+      {
+        "id": "item-984yt7j2",
+        "label": "compatible"
+      },
+      {
+        "id": "item-m6zvv9v9",
+        "label": "breaking"
+      },
+      {
+        "id": "item-q4m6a8jc",
+        "label": "unknown"
+      },
+      {
+        "id": "item-683adhka",
+        "label": "compatible"
+      },
+      {
+        "id": "item-myczh736",
+        "label": "breaking"
+      },
+      {
+        "id": "item-x6gbmktq",
+        "label": "compatible"
+      },
+      {
+        "id": "item-sfg7ypzn",
+        "label": "unknown"
+      },
+      {
+        "id": "item-7qppy3rs",
+        "label": "breaking"
+      },
+      {
+        "id": "item-7mh2n8fs",
+        "label": "compatible"
+      },
+      {
+        "id": "item-c6p7zecr",
+        "label": "breaking"
+      },
+      {
+        "id": "item-pvg6frw5",
+        "label": "unknown"
+      },
+      {
+        "id": "item-xm457a7g",
+        "label": "compatible"
+      },
+      {
+        "id": "item-z69fzent",
+        "label": "breaking"
+      },
+      {
+        "id": "item-b3vabsk2",
+        "label": "compatible"
+      },
+      {
+        "id": "item-sbjyuw3j",
+        "label": "unknown"
+      },
+      {
+        "id": "item-gyq92y34",
+        "label": "breaking"
+      },
+      {
+        "id": "item-vauk8bpc",
+        "label": "compatible"
+      },
+      {
+        "id": "item-nqgq8crs",
+        "label": "breaking"
+      },
+      {
+        "id": "item-36uramc3",
+        "label": "unknown"
+      },
+      {
+        "id": "item-te6qcrrq",
+        "label": "compatible"
+      }
+    ]
+  },
+  {
+    "id": "feedback_theme",
+    "prompt": "Classify every record in items.jsonl under the feedback_theme policy. Write decisions.jsonl with exactly one JSON object per input record, containing only id and label. Keep original IDs. Do not modify input files or take external actions. Return the output filename and number of records. The authoritative decision policy is supplied here so no separate policy-file read is needed: {\"question\": \"What is the primary requested improvement?\", \"criteria\": {\"reliability\": \"Fix failures, data loss or unavailable behavior\", \"usability\": \"Improve navigation, comprehension or interaction effort\", \"pricing\": \"Change price, plan limits or billing policy\", \"feature\": \"Add a capability that does not currently exist\"}}",
+    "expected": [
+      {
+        "id": "item-6mq92ktf",
+        "label": "usability"
+      },
+      {
+        "id": "item-dwx3gnmu",
+        "label": "feature"
+      },
+      {
+        "id": "item-twmg8m8t",
+        "label": "reliability"
+      },
+      {
+        "id": "item-fykzw5yv",
+        "label": "pricing"
+      },
+      {
+        "id": "item-yduyx9h4",
+        "label": "feature"
+      },
+      {
+        "id": "item-z2wegyjm",
+        "label": "usability"
+      },
+      {
+        "id": "item-k9a4zmgz",
+        "label": "reliability"
+      },
+      {
+        "id": "item-7ct9yue2",
+        "label": "pricing"
+      },
+      {
+        "id": "item-asevy7eh",
+        "label": "usability"
+      },
+      {
+        "id": "item-wwfxcqxx",
+        "label": "feature"
+      },
+      {
+        "id": "item-4wc2bbhb",
+        "label": "pricing"
+      },
+      {
+        "id": "item-3ve6ensz",
+        "label": "reliability"
+      },
+      {
+        "id": "item-uak7mmzf",
+        "label": "feature"
+      },
+      {
+        "id": "item-hwd3nz8c",
+        "label": "reliability"
+      },
+      {
+        "id": "item-9343uavj",
+        "label": "usability"
+      },
+      {
+        "id": "item-9d9bwg7p",
+        "label": "pricing"
+      },
+      {
+        "id": "item-bgyq2qwa",
+        "label": "reliability"
+      },
+      {
+        "id": "item-98r6p46b",
+        "label": "feature"
+      },
+      {
+        "id": "item-ff2xwsqq",
+        "label": "usability"
+      },
+      {
+        "id": "item-t3dywf98",
+        "label": "pricing"
+      },
+      {
+        "id": "item-2dhzkp3n",
+        "label": "feature"
+      },
+      {
+        "id": "item-e3s8sr8m",
+        "label": "usability"
+      },
+      {
+        "id": "item-pxagepba",
+        "label": "reliability"
+      },
+      {
+        "id": "item-6evcuzae",
+        "label": "pricing"
+      },
+      {
+        "id": "item-7humyrua",
+        "label": "usability"
+      },
+      {
+        "id": "item-ug9fcwbx",
+        "label": "reliability"
+      },
+      {
+        "id": "item-c5w7ju5n",
+        "label": "feature"
+      },
+      {
+        "id": "item-zqebtbxp",
+        "label": "pricing"
+      },
+      {
+        "id": "item-nbmd73aa",
+        "label": "feature"
+      },
+      {
+        "id": "item-wyv8h9yc",
+        "label": "reliability"
+      },
+      {
+        "id": "item-fwzt8fbf",
+        "label": "usability"
+      },
+      {
+        "id": "item-773tkkdb",
+        "label": "pricing"
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "id": "clarification_gate",
+  "area": "general",
+  "title": "Detect when a task needs clarification",
+  "question": "Can the requested action proceed using the supplied context without guessing a material choice?",
+  "criteria": {
+    "proceed": "Target and required choices are clear, or a safe explicit default applies",
+    "ask": "A material target, recipient, scope or irreversible choice is ambiguous"
+  },
+  "benefit": "Avoid needless questions while catching consequential ambiguity."
+}

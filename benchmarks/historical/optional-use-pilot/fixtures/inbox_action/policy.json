@@ -1,0 +1,13 @@
+{
+  "id": "inbox_action",
+  "area": "general",
+  "title": "Identify actionable inbox messages",
+  "question": "What action should the recipient take according to this message?",
+  "criteria": {
+    "reply": "Recipient is explicitly asked to answer, decide or confirm",
+    "task": "Recipient is assigned work, without a required message reply",
+    "none": "Informational, cancelled, already resolved or addressed to someone else",
+    "clarify": "An action is requested but essential identity or scope is ambiguous"
+  },
+  "benefit": "Process a mailbox batch without dumping every message into Codex."
+}

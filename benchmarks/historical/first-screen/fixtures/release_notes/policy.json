@@ -1,0 +1,12 @@
+{
+  "id": "release_notes",
+  "area": "coding",
+  "title": "Filter customer-facing release notes",
+  "question": "Does this change belong in customer-facing release notes?",
+  "criteria": {
+    "include": "Shipped user-visible feature, fix or breaking change",
+    "exclude": "Internal-only work or unshipped experiment",
+    "unclear": "Shipping status or user-visible impact is missing"
+  },
+  "benefit": "Produce a reliable changelog candidate set with less context."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "duplicate_issue",
+  "area": "coding",
+  "title": "Find duplicate bug reports",
+  "question": "Do reports A and B describe the same defect, rather than merely the same component?",
+  "criteria": {
+    "same": "Same trigger and observable failure; wording may differ",
+    "different": "Different trigger, failure or explicit cause",
+    "unclear": "Too little evidence to establish whether the defects match"
+  },
+  "benefit": "Shortlist duplicate pairs before Codex reads the whole backlog."
+}

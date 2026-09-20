@@ -1,0 +1,8 @@
+{"id": "r-2e5ad8f", "text": "Docs: matching ignores letter case. Implementation lowercases both operands before equality comparison."}
+{"id": "r-tv94h8z", "text": "Docs: timeout defaults to five seconds. Code: timeout = options.timeout ?? 5000; unit is milliseconds."}
+{"id": "r-79ebmg8", "text": "Docs: deletion is a dry run by default. Code: dryRun = options.dryRun ?? false; false executes deletion."}
+{"id": "r-cvadwd6", "text": "Docs: empty names are rejected. Code: validation accepts every string including the empty string."}
+{"id": "r-83sh9fz", "text": "Docs: cache is shared across processes. Code excerpt only imports a Cache class without its implementation."}
+{"id": "r-atc64bd", "text": "Docs: writes are atomic. Code shown only declares the save(record) function signature."}
+{"id": "r-9hg7hdy", "text": "Docs: list results are oldest first. Code: ORDER BY created_at DESC, where larger timestamps are newer."}
+{"id": "r-tgwnenm", "text": "Docs: omitted retries means no retry. Code: retries = options.retries ?? 0; count zero performs only the initial request."}

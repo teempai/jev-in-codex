@@ -1,0 +1,19 @@
+{
+  "id": "config_migration-1-N",
+  "task": "config_migration",
+  "rep": 1,
+  "arm": "N",
+  "elapsed_ms": 11456.264083000016,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31299,
+      "cached_input_tokens": 28416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 241,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:21:59.691Z"
+}

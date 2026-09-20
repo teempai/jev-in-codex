@@ -1,0 +1,19 @@
+{
+  "id": "ci_failure-1-N",
+  "task": "ci_failure",
+  "rep": 1,
+  "arm": "N",
+  "elapsed_ms": 12099.817416999955,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 31564,
+      "cached_input_tokens": 18944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 260,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:20:08.983Z"
+}

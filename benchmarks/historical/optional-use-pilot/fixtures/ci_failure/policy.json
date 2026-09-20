@@ -1,0 +1,13 @@
+{
+  "id": "ci_failure",
+  "area": "coding",
+  "title": "Classify CI failure evidence",
+  "question": "What does the supplied evidence support about this failed run?",
+  "criteria": {
+    "product": "Repeatable application behavior violates an assertion",
+    "environment": "Infrastructure, provisioning or external availability prevents a meaningful test",
+    "flaky": "The unchanged build alternates pass/fail under the same stated test conditions",
+    "unknown": "Insufficient evidence or conflicting categories"
+  },
+  "benefit": "Route failed runs without having Codex narrate every log."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "clarification_gate-1-A",
+  "task": "clarification_gate",
+  "rep": 1,
+  "arm": "A",
+  "elapsed_ms": 8078.219999999972,
+  "code": 0,
+  "timedOut": false,
+  "usage": [
+    {
+      "input_tokens": 18702,
+      "cached_input_tokens": 8960,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 184,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "ended": "2026-09-20T17:25:42.380Z"
+}

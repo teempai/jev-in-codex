@@ -1,0 +1,8 @@
+{"id": "r-e7mjdn5", "text": "Rule applies to clients older than version 4. The deployed client version is not recorded."}
+{"id": "r-xfmqqe6", "text": "Rule: timeouts require unit suffixes. Config timeout is 30s, which the new parser accepts."}
+{"id": "r-xmvpe4k", "text": "Rule: legacy mode is removed. Config explicitly selects standard mode and contains no legacy options."}
+{"id": "r-96dxzw5", "text": "Rule: TLS becomes mandatory only in production. Config omits the environment and TLS setting; deployment context is unknown."}
+{"id": "r-zmjqfjm", "text": "Rule: rename retryCount to retries. Config: {retryCount: 3}."}
+{"id": "r-ks47k2m", "text": "Rule: rename retryCount to retries. Config already uses {retries: 3} and has no old key."}
+{"id": "r-hzxx5w3", "text": "Rule: timeouts now require explicit unit suffixes. Config timeout is the bare number 30."}
+{"id": "r-a8z2sav", "text": "Rule: local plaintext credentials must move to a secret reference. Config stores a literal password in the authentication field."}

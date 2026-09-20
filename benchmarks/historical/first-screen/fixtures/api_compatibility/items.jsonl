@@ -1,0 +1,8 @@
+{"id": "r-2ddbkdr", "text": "Add a response field to an object whose documented contract explicitly requires clients to ignore unknown fields."}
+{"id": "r-95hhpbf", "text": "Add a response field. The client parsing contract and tolerance for unknown fields are not described."}
+{"id": "r-p8sf8dj", "text": "Old: optional region defaults to EU. New: region is mandatory and omitted values cause HTTP 400."}
+{"id": "r-4x63fdc", "text": "Change a returned number to another unit, but neither the old nor new unit is stated."}
+{"id": "r-arpwaps", "text": "Correct a misspelling in documentation while preserving every request and response byte."}
+{"id": "r-eruqsy6", "text": "Old: retry_after is seconds. New: the same field name means milliseconds, without version negotiation."}
+{"id": "r-4qqajws", "text": "Old response includes required string field id. New response removes id and supplies record_key instead."}
+{"id": "r-pp5vmkb", "text": "Add an optional request parameter. When omitted, behavior remains exactly as before."}

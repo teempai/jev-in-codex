@@ -1,0 +1,8 @@
+{
+  "node": "v26.7.0",
+  "codex": "codex-cli 0.155.0-alpha.9.2",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "service_tier": "priority",
+  "repetitions": 4
+}

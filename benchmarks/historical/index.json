@@ -1,0 +1,32 @@
+[
+  {
+    "phase": "first-screen",
+    "sessions": 80,
+    "source_phase": "explicit-use"
+  },
+  {
+    "phase": "permission-failure",
+    "sessions": 8,
+    "source_phase": "artifact-development"
+  },
+  {
+    "phase": "artifact-32",
+    "sessions": 8,
+    "source_phase": "artifact-approved"
+  },
+  {
+    "phase": "feedback-64",
+    "sessions": 4,
+    "source_phase": "large-feedback"
+  },
+  {
+    "phase": "feedback-parallel",
+    "sessions": 8,
+    "source_phase": "parallel-feedback"
+  },
+  {
+    "phase": "optional-use-pilot",
+    "sessions": 10,
+    "source_phase": "screen"
+  }
+]

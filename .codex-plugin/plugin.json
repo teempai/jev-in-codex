@@ -1,7 +1,7 @@
 {
   "name": "jev-in-codex",
-  "version": "0.1.0",
-  "description": "Jev-powered capability selection, context search, and output triage for Codex.",
+  "version": "0.2.0",
+  "description": "Batch feedback labelling with Jev; capabilities require benchmark evidence.",
   "author": {
     "name": "Vectordrift",
     "url": "https://github.com/teempai"
@@ -9,15 +9,16 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Jev in Codex",
-    "shortDescription": "Rank capabilities and evidence with Jev.",
-    "longDescription": "Use a local MCP server to rank tools and skills, rerank code excerpts, and triage saved output with Jev.",
+    "shortDescription": "Label feedback batches with Jev.",
+    "longDescription": "Create a complete labelled artifact and review uncertain records. Initial benchmarked policy: customer-feedback themes.",
     "developerName": "Vectordrift",
     "category": "Productivity",
     "capabilities": [
-      "Read"
+      "Read",
+      "Write"
     ],
     "defaultPrompt": [
-      "Use Jev to find relevant evidence for this task."
+      "Use Jev to label this feedback batch."
     ]
   },
   "mcpServers": "./.mcp.json",
@@ -28,7 +29,7 @@
     "codex",
     "jev",
     "mcp",
-    "context",
-    "triage"
+    "labelling",
+    "benchmarks"
   ]
 }

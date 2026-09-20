@@ -1,0 +1,12 @@
+{
+  "id": "test_selection",
+  "area": "coding",
+  "title": "Select relevant regression tests",
+  "question": "Should this test run for the described change? Select tests exercising changed behavior or an explicit dependent path.",
+  "criteria": {
+    "run": "Exercises changed behavior or an explicit dependency",
+    "skip": "Clearly unrelated path",
+    "unclear": "The relationship cannot be determined from the supplied information"
+  },
+  "benefit": "Reduce large test-catalog reads while preserving impacted-test recall."
+}

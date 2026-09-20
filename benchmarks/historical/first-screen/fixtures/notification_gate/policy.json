@@ -1,0 +1,12 @@
+{
+  "id": "notification_gate",
+  "area": "general",
+  "title": "Decide whether to interrupt now",
+  "question": "Under the stated policy, should this notification interrupt focused work? Interrupt only for an active outage, an immediate safety issue, or an explicit decision needed within one hour; otherwise defer.",
+  "criteria": {
+    "interrupt": "Meets at least one explicit immediate-interruption condition",
+    "defer": "Does not meet those conditions",
+    "clarify": "Essential urgency or timing information is missing"
+  },
+  "benefit": "Reduce unnecessary interruptions while preserving urgent recall."
+}
