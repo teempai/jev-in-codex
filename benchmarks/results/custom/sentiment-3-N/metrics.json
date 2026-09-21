@@ -1,0 +1,19 @@
+{
+  "id": "sentiment-3-N",
+  "task": "sentiment",
+  "rep": 3,
+  "arm": "N",
+  "code": 0,
+  "timedOut": false,
+  "inputs_unchanged": true,
+  "elapsed_ms": 11882.090999999957,
+  "usage": [
+    {
+      "input_tokens": 32363,
+      "cached_input_tokens": 29440,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 213,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

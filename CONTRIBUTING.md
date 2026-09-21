@@ -6,7 +6,7 @@ Keep the integration small: Jev supplies decisions; Codex owns reasoning, review
 
 ## Capabilities must earn their place
 
-Follow [benchmarks/POLICY.md](benchmarks/POLICY.md) before exposing any new tool, policy or broader capability. Include the implemented PoC, frozen protocol, representative inputs and reference labels, paired plain-Codex comparison, raw measurements, actual provider-call evidence, complete-output quality grades and reproducible analysis. Report negative results and regressions. A passing synthetic development example supports only that disclosed workload.
+Follow [benchmarks/POLICY.md](benchmarks/POLICY.md) before exposing any new tool, built-in preset or broader capability. Include the implemented PoC, frozen protocol, representative inputs and reference labels, paired plain-Codex comparison, raw measurements, actual provider-call evidence, complete-output quality grades and reproducible analysis. Report negative results and regressions. A passing synthetic development example supports only that disclosed workload.
 
 The current interface contract test asserts exactly one advertised tool. Changes to that contract require benchmark evidence and review, not merely updating the assertion. CI recomputes the admitted release benchmark gate from checked-in measurements and complete artifacts; a green check does not substitute for scientific review or establish held-out validity.
 

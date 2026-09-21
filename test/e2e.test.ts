@@ -16,7 +16,7 @@ test('compiled MCP exposes only labelling and writes actual simulated Choice ans
     assert.equal(body.model, 'jev-1.13.0'); assert.equal(body.questions.q0.type, 'choice');
     response.setHeader('content-type', 'application/json');
     response.end(JSON.stringify({ answers: Object.fromEntries(Object.keys(body.questions).map(id => [id, {
-      type: 'choice', choice: 'pricing', confidence: .95, probabilities: { pricing: .95, reliability: .02, usability: .02, feature: .01 },
+      type: 'choice', choice: Object.keys(body.questions[id].criteria)[0], confidence: .95, probabilities: Object.fromEntries(Object.keys(body.questions[id].criteria).map((k, i) => [k, i === 0 ? .95 : .05 / (Object.keys(body.questions[id].criteria).length - 1)])),
     }])) }));
   });
   await new Promise<void>(resolve => http.listen(0, '127.0.0.1', resolve));
@@ -30,7 +30,13 @@ test('compiled MCP exposes only labelling and writes actual simulated Choice ans
   const { tools } = await client.listTools(); assert.deepEqual(tools.map(tool => tool.name), ['jev_label']); assert.equal(tools[0].annotations?.readOnlyHint, false);
   const result = await client.callTool({ name: 'jev_label', arguments: { path: 'items.jsonl' } }); assert.ok(!result.isError);
   const payload = JSON.parse((result.content[0] as { text: string }).text); assert.equal(payload.method, 'jev'); assert.equal(payload.api_requests, 8); assert.equal(requests, 8);
-  const rows = (await readFile(path.join(root, 'decisions.jsonl'), 'utf8')).trim().split('\n').map(line => JSON.parse(line)); assert.equal(rows.length, 64); assert.ok(rows.every(row => row.label === 'pricing'));
+  const rows = (await readFile(path.join(root, 'decisions.jsonl'), 'utf8')).trim().split('\n').map(line => JSON.parse(line)); assert.equal(rows.length, 64); assert.ok(rows.every(row => row.label === 'reliability'));
   const duplicate = await client.callTool({ name: 'jev_label', arguments: { path: 'items.jsonl' } }); assert.ok(duplicate.isError); assert.equal(requests, 8);
+  const custom = await client.callTool({ name: 'jev_label', arguments: { path: 'items.jsonl', output_path: 'custom.jsonl', policy: { question: 'Which group?', criteria: { accept: 'Matches', other: 'Does not match' } } } });
+  assert.ok(!custom.isError); assert.equal(requests, 16);
+  const customRows = (await readFile(path.join(root, 'custom.jsonl'), 'utf8')).trim().split('\n').map(line => JSON.parse(line));
+  assert.equal(customRows.length, 64); assert.ok(customRows.every(row => row.label === 'accept'));
+  const invalid = await client.callTool({ name: 'jev_label', arguments: { path: 'items.jsonl', policy: { question: 'Q', criteria: { only: 'one label' } } } }).catch(() => ({ isError: true }));
+  assert.ok(invalid.isError); assert.equal(requests, 16);
   const removed = await client.callTool({ name: 'jev_search', arguments: { question: 'anything' } }).catch(() => ({ isError: true })); assert.ok(removed.isError);
 });

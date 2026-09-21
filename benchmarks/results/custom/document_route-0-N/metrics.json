@@ -1,0 +1,19 @@
+{
+  "id": "document_route-0-N",
+  "task": "document_route",
+  "rep": 0,
+  "arm": "N",
+  "code": 0,
+  "timedOut": false,
+  "inputs_unchanged": true,
+  "elapsed_ms": 11324.259417000008,
+  "usage": [
+    {
+      "input_tokens": 32426,
+      "cached_input_tokens": 29440,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 216,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

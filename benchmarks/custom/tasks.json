@@ -1,0 +1,1076 @@
+[
+  {
+    "id": "action_needed",
+    "policy": {
+      "question": "Does the recipient have an outstanding requested action in this message?",
+      "criteria": {
+        "action": "The recipient is explicitly asked to do something or answer a question, and that request has not been withdrawn or completed.",
+        "no_action": "Informational, resolved or cancelled requests, or actions assigned only to someone else. A past request alone does not count."
+      }
+    },
+    "prompt": "Classify every record in items.jsonl under the supplied policy. Write decisions.jsonl with exactly one JSON object per input record, containing only id and label. Keep original IDs. Do not modify input files or take external actions. Return the output filename and number of records. The authoritative decision policy is supplied here so no separate policy-file read is needed: {\"question\": \"Does the recipient have an outstanding requested action in this message?\", \"criteria\": {\"action\": \"The recipient is explicitly asked to do something or answer a question, and that request has not been withdrawn or completed.\", \"no_action\": \"Informational, resolved or cancelled requests, or actions assigned only to someone else. A past request alone does not count.\"}}",
+    "expected": [
+      {
+        "id": "item-76feaa4472c9",
+        "label": "action"
+      },
+      {
+        "id": "item-ce86b292bd71",
+        "label": "no_action"
+      },
+      {
+        "id": "item-5e36c15b8280",
+        "label": "action"
+      },
+      {
+        "id": "item-77a66e50d757",
+        "label": "action"
+      },
+      {
+        "id": "item-edf4fb4a5038",
+        "label": "no_action"
+      },
+      {
+        "id": "item-b006d8bf0477",
+        "label": "action"
+      },
+      {
+        "id": "item-50e46962f8f2",
+        "label": "no_action"
+      },
+      {
+        "id": "item-dd6844030e97",
+        "label": "action"
+      },
+      {
+        "id": "item-90788f7c6d4f",
+        "label": "action"
+      },
+      {
+        "id": "item-012d24d8ce17",
+        "label": "no_action"
+      },
+      {
+        "id": "item-e18d155d796d",
+        "label": "no_action"
+      },
+      {
+        "id": "item-b40c35a645a2",
+        "label": "no_action"
+      },
+      {
+        "id": "item-a582bab36237",
+        "label": "no_action"
+      },
+      {
+        "id": "item-f0fa8483cbc2",
+        "label": "action"
+      },
+      {
+        "id": "item-8c3c195f59d5",
+        "label": "no_action"
+      },
+      {
+        "id": "item-c5e71a0aa30c",
+        "label": "no_action"
+      },
+      {
+        "id": "item-d8e181f76a76",
+        "label": "no_action"
+      },
+      {
+        "id": "item-d944427742f9",
+        "label": "action"
+      },
+      {
+        "id": "item-12ef5861d14f",
+        "label": "action"
+      },
+      {
+        "id": "item-87debe41f072",
+        "label": "no_action"
+      },
+      {
+        "id": "item-1ca4e2e70c56",
+        "label": "action"
+      },
+      {
+        "id": "item-0668ea881eb1",
+        "label": "action"
+      },
+      {
+        "id": "item-680d796820d6",
+        "label": "no_action"
+      },
+      {
+        "id": "item-0ad3b96ab46f",
+        "label": "action"
+      },
+      {
+        "id": "item-88d3f518b58e",
+        "label": "no_action"
+      },
+      {
+        "id": "item-a49ef221bfe5",
+        "label": "no_action"
+      },
+      {
+        "id": "item-d16eba9c7044",
+        "label": "action"
+      },
+      {
+        "id": "item-ff3d7697d0b3",
+        "label": "no_action"
+      },
+      {
+        "id": "item-fd2288b14b20",
+        "label": "action"
+      },
+      {
+        "id": "item-b55179da3f41",
+        "label": "action"
+      },
+      {
+        "id": "item-936a93d40bd6",
+        "label": "no_action"
+      },
+      {
+        "id": "item-a20befd25bc7",
+        "label": "no_action"
+      },
+      {
+        "id": "item-1c97491adce7",
+        "label": "action"
+      },
+      {
+        "id": "item-d5b3fa2560ca",
+        "label": "action"
+      },
+      {
+        "id": "item-cd47061a91da",
+        "label": "action"
+      },
+      {
+        "id": "item-ef8b4458ede2",
+        "label": "no_action"
+      },
+      {
+        "id": "item-78169a755434",
+        "label": "action"
+      },
+      {
+        "id": "item-eaf82a7d6a07",
+        "label": "no_action"
+      },
+      {
+        "id": "item-7c220bb3c6aa",
+        "label": "action"
+      },
+      {
+        "id": "item-b5cdf9cb5b7f",
+        "label": "action"
+      },
+      {
+        "id": "item-0619567a25f4",
+        "label": "no_action"
+      },
+      {
+        "id": "item-391aa07d8115",
+        "label": "no_action"
+      },
+      {
+        "id": "item-dfc425ab4bcd",
+        "label": "action"
+      },
+      {
+        "id": "item-2b5a589c13c1",
+        "label": "action"
+      },
+      {
+        "id": "item-cd9a53bb74bb",
+        "label": "action"
+      },
+      {
+        "id": "item-80807cc2bac4",
+        "label": "no_action"
+      },
+      {
+        "id": "item-b32afb5ddea1",
+        "label": "action"
+      },
+      {
+        "id": "item-4ec441e63c8c",
+        "label": "no_action"
+      },
+      {
+        "id": "item-ca6b5b96aee8",
+        "label": "action"
+      },
+      {
+        "id": "item-0b60b6f10a1c",
+        "label": "action"
+      },
+      {
+        "id": "item-a518f2276844",
+        "label": "action"
+      },
+      {
+        "id": "item-b98d36aeed17",
+        "label": "no_action"
+      },
+      {
+        "id": "item-acce3e428615",
+        "label": "no_action"
+      },
+      {
+        "id": "item-ec53fa2da190",
+        "label": "no_action"
+      },
+      {
+        "id": "item-334cd3e19e2f",
+        "label": "no_action"
+      },
+      {
+        "id": "item-62af65852409",
+        "label": "action"
+      },
+      {
+        "id": "item-f01ce4304de3",
+        "label": "action"
+      },
+      {
+        "id": "item-ad9411e3cc43",
+        "label": "no_action"
+      },
+      {
+        "id": "item-363ab8309763",
+        "label": "no_action"
+      },
+      {
+        "id": "item-011bed062f22",
+        "label": "action"
+      },
+      {
+        "id": "item-de4c57dd61f3",
+        "label": "no_action"
+      },
+      {
+        "id": "item-51df5c618b6b",
+        "label": "no_action"
+      },
+      {
+        "id": "item-8381632578c5",
+        "label": "action"
+      },
+      {
+        "id": "item-a39bce2ec94c",
+        "label": "no_action"
+      }
+    ]
+  },
+  {
+    "id": "sentiment",
+    "policy": {
+      "question": "What is the writer's overall current assessment of their experience?",
+      "criteria": {
+        "positive": "The writer clearly endorses the current experience overall, even if they describe an earlier problem or a minor caveat.",
+        "negative": "The writer clearly criticizes the current experience overall, even if they mention an earlier success or a minor benefit.",
+        "neutral": "Factual description without an overall positive or negative assessment, or explicitly balanced and undecided."
+      }
+    },
+    "prompt": "Classify every record in items.jsonl under the supplied policy. Write decisions.jsonl with exactly one JSON object per input record, containing only id and label. Keep original IDs. Do not modify input files or take external actions. Return the output filename and number of records. The authoritative decision policy is supplied here so no separate policy-file read is needed: {\"question\": \"What is the writer's overall current assessment of their experience?\", \"criteria\": {\"positive\": \"The writer clearly endorses the current experience overall, even if they describe an earlier problem or a minor caveat.\", \"negative\": \"The writer clearly criticizes the current experience overall, even if they mention an earlier success or a minor benefit.\", \"neutral\": \"Factual description without an overall positive or negative assessment, or explicitly balanced and undecided.\"}}",
+    "expected": [
+      {
+        "id": "item-86f7307f3841",
+        "label": "positive"
+      },
+      {
+        "id": "item-246ff585857a",
+        "label": "neutral"
+      },
+      {
+        "id": "item-4cff46c591f9",
+        "label": "positive"
+      },
+      {
+        "id": "item-d8b002c1fccf",
+        "label": "positive"
+      },
+      {
+        "id": "item-88e7a94d422c",
+        "label": "neutral"
+      },
+      {
+        "id": "item-1748df95ba8f",
+        "label": "positive"
+      },
+      {
+        "id": "item-c792a5b3bca8",
+        "label": "negative"
+      },
+      {
+        "id": "item-26bbf8542304",
+        "label": "neutral"
+      },
+      {
+        "id": "item-2f745e8b49ea",
+        "label": "positive"
+      },
+      {
+        "id": "item-59b82a6d16d6",
+        "label": "negative"
+      },
+      {
+        "id": "item-3d2263a28c36",
+        "label": "negative"
+      },
+      {
+        "id": "item-0c137aaf3d1a",
+        "label": "negative"
+      },
+      {
+        "id": "item-aee134532be7",
+        "label": "negative"
+      },
+      {
+        "id": "item-795b8a220430",
+        "label": "positive"
+      },
+      {
+        "id": "item-ada8e7de5fcc",
+        "label": "neutral"
+      },
+      {
+        "id": "item-9d3b3505c362",
+        "label": "negative"
+      },
+      {
+        "id": "item-f77fabfe5394",
+        "label": "neutral"
+      },
+      {
+        "id": "item-69e0e92e87be",
+        "label": "neutral"
+      },
+      {
+        "id": "item-87271ca703e3",
+        "label": "neutral"
+      },
+      {
+        "id": "item-c91d326848ac",
+        "label": "negative"
+      },
+      {
+        "id": "item-e7e867f0b099",
+        "label": "positive"
+      },
+      {
+        "id": "item-25dab8205057",
+        "label": "positive"
+      },
+      {
+        "id": "item-bd429c8e407b",
+        "label": "neutral"
+      },
+      {
+        "id": "item-aa0fa0530f97",
+        "label": "neutral"
+      },
+      {
+        "id": "item-13dc494dc596",
+        "label": "negative"
+      },
+      {
+        "id": "item-93928b9edd11",
+        "label": "negative"
+      },
+      {
+        "id": "item-dd5ff1627400",
+        "label": "neutral"
+      },
+      {
+        "id": "item-4b88c5f64c61",
+        "label": "negative"
+      },
+      {
+        "id": "item-3eafcb079ded",
+        "label": "neutral"
+      },
+      {
+        "id": "item-e11ddae257bc",
+        "label": "neutral"
+      },
+      {
+        "id": "item-bd10488ad0aa",
+        "label": "neutral"
+      },
+      {
+        "id": "item-12d34333a98e",
+        "label": "neutral"
+      },
+      {
+        "id": "item-2e96d2690d36",
+        "label": "positive"
+      },
+      {
+        "id": "item-860ddafc8ad7",
+        "label": "positive"
+      },
+      {
+        "id": "item-c43d21a9c0a8",
+        "label": "neutral"
+      },
+      {
+        "id": "item-902d3de62b7e",
+        "label": "negative"
+      },
+      {
+        "id": "item-51acea8935be",
+        "label": "neutral"
+      },
+      {
+        "id": "item-dc4c3a8796b2",
+        "label": "neutral"
+      },
+      {
+        "id": "item-2304139c0a7d",
+        "label": "neutral"
+      },
+      {
+        "id": "item-c90eca9e8e5c",
+        "label": "neutral"
+      },
+      {
+        "id": "item-3cd9ed511b0c",
+        "label": "neutral"
+      },
+      {
+        "id": "item-6ed1f4cc3fd1",
+        "label": "negative"
+      },
+      {
+        "id": "item-271fb9a2c44a",
+        "label": "positive"
+      },
+      {
+        "id": "item-dd8aaec3822c",
+        "label": "neutral"
+      },
+      {
+        "id": "item-ce3f6afa2fd1",
+        "label": "positive"
+      },
+      {
+        "id": "item-1f6af5645a46",
+        "label": "negative"
+      },
+      {
+        "id": "item-3cf873bb9b62",
+        "label": "positive"
+      },
+      {
+        "id": "item-9606fd9396eb",
+        "label": "neutral"
+      },
+      {
+        "id": "item-a911a539cefa",
+        "label": "neutral"
+      },
+      {
+        "id": "item-fa0921a3d507",
+        "label": "positive"
+      },
+      {
+        "id": "item-db5e4b1f7d8d",
+        "label": "positive"
+      },
+      {
+        "id": "item-2e70aa4e69ba",
+        "label": "negative"
+      },
+      {
+        "id": "item-75423b1df743",
+        "label": "negative"
+      },
+      {
+        "id": "item-07f58ba3e595",
+        "label": "neutral"
+      },
+      {
+        "id": "item-2a31993af53a",
+        "label": "negative"
+      },
+      {
+        "id": "item-67abab5f8b02",
+        "label": "neutral"
+      },
+      {
+        "id": "item-0ddb00945aac",
+        "label": "neutral"
+      },
+      {
+        "id": "item-1a6db44451d8",
+        "label": "neutral"
+      },
+      {
+        "id": "item-d6c46212510f",
+        "label": "neutral"
+      },
+      {
+        "id": "item-457f71b5d690",
+        "label": "neutral"
+      },
+      {
+        "id": "item-98ee66ba5612",
+        "label": "neutral"
+      },
+      {
+        "id": "item-159b74913799",
+        "label": "neutral"
+      },
+      {
+        "id": "item-9d134c9d30a3",
+        "label": "positive"
+      },
+      {
+        "id": "item-19b3c4a8265a",
+        "label": "neutral"
+      }
+    ]
+  },
+  {
+    "id": "document_route",
+    "policy": {
+      "question": "Which collection should hold this document, based on its main current purpose rather than incidental mentions?",
+      "criteria": {
+        "engineering": "Technical implementation, system operations, debugging or deployment instructions.",
+        "research": "Study design, experiment methods or interpretation of research observations.",
+        "commercial": "Sales, customer contracts, purchasing or billing operations.",
+        "people": "Recruitment, onboarding, staff development or leave administration.",
+        "other": "None of those purposes, including facilities, community events or personal notes."
+      }
+    },
+    "prompt": "Classify every record in items.jsonl under the supplied policy. Write decisions.jsonl with exactly one JSON object per input record, containing only id and label. Keep original IDs. Do not modify input files or take external actions. Return the output filename and number of records. The authoritative decision policy is supplied here so no separate policy-file read is needed: {\"question\": \"Which collection should hold this document, based on its main current purpose rather than incidental mentions?\", \"criteria\": {\"engineering\": \"Technical implementation, system operations, debugging or deployment instructions.\", \"research\": \"Study design, experiment methods or interpretation of research observations.\", \"commercial\": \"Sales, customer contracts, purchasing or billing operations.\", \"people\": \"Recruitment, onboarding, staff development or leave administration.\", \"other\": \"None of those purposes, including facilities, community events or personal notes.\"}}",
+    "expected": [
+      {
+        "id": "item-a5b06dc27dec",
+        "label": "engineering"
+      },
+      {
+        "id": "item-499031dae7fb",
+        "label": "people"
+      },
+      {
+        "id": "item-763cb62f23e9",
+        "label": "engineering"
+      },
+      {
+        "id": "item-cdc8679c36e9",
+        "label": "other"
+      },
+      {
+        "id": "item-a81893c099e2",
+        "label": "people"
+      },
+      {
+        "id": "item-85d0cf38280e",
+        "label": "other"
+      },
+      {
+        "id": "item-44db686a6475",
+        "label": "research"
+      },
+      {
+        "id": "item-a85ac1db5054",
+        "label": "people"
+      },
+      {
+        "id": "item-d505d5844277",
+        "label": "engineering"
+      },
+      {
+        "id": "item-7b53a7bd0723",
+        "label": "other"
+      },
+      {
+        "id": "item-10c4261b175c",
+        "label": "engineering"
+      },
+      {
+        "id": "item-ddb89a27d3dc",
+        "label": "people"
+      },
+      {
+        "id": "item-b432eec1023e",
+        "label": "engineering"
+      },
+      {
+        "id": "item-5fe2d8b00bca",
+        "label": "commercial"
+      },
+      {
+        "id": "item-fb9f26b6018e",
+        "label": "other"
+      },
+      {
+        "id": "item-75eb22770419",
+        "label": "other"
+      },
+      {
+        "id": "item-dc12efb62f8f",
+        "label": "commercial"
+      },
+      {
+        "id": "item-109f35f551d6",
+        "label": "people"
+      },
+      {
+        "id": "item-6da4e675c515",
+        "label": "commercial"
+      },
+      {
+        "id": "item-ef1389a49582",
+        "label": "research"
+      },
+      {
+        "id": "item-f8aabed977c9",
+        "label": "other"
+      },
+      {
+        "id": "item-5b8ccb8bf850",
+        "label": "research"
+      },
+      {
+        "id": "item-39d314f3c619",
+        "label": "engineering"
+      },
+      {
+        "id": "item-36ef9f71e29a",
+        "label": "commercial"
+      },
+      {
+        "id": "item-55fad4990bac",
+        "label": "commercial"
+      },
+      {
+        "id": "item-ecbb562643a3",
+        "label": "research"
+      },
+      {
+        "id": "item-cc3a69547fb8",
+        "label": "other"
+      },
+      {
+        "id": "item-7379b75249fa",
+        "label": "people"
+      },
+      {
+        "id": "item-e9ebd477a463",
+        "label": "other"
+      },
+      {
+        "id": "item-583390cc896f",
+        "label": "engineering"
+      },
+      {
+        "id": "item-48bc546fec98",
+        "label": "commercial"
+      },
+      {
+        "id": "item-a793e744b20c",
+        "label": "engineering"
+      },
+      {
+        "id": "item-72e407437f2e",
+        "label": "research"
+      },
+      {
+        "id": "item-4c33a06b09f1",
+        "label": "people"
+      },
+      {
+        "id": "item-536b54ec2e50",
+        "label": "research"
+      },
+      {
+        "id": "item-ff5eb4ba9674",
+        "label": "research"
+      },
+      {
+        "id": "item-57553986d629",
+        "label": "engineering"
+      },
+      {
+        "id": "item-c76dbca98f9d",
+        "label": "research"
+      },
+      {
+        "id": "item-8d7f0a5c9220",
+        "label": "research"
+      },
+      {
+        "id": "item-4d76c219d323",
+        "label": "research"
+      },
+      {
+        "id": "item-e5510476baf2",
+        "label": "commercial"
+      },
+      {
+        "id": "item-9e64bef7ec41",
+        "label": "engineering"
+      },
+      {
+        "id": "item-9e9479c343f1",
+        "label": "commercial"
+      },
+      {
+        "id": "item-88a52443877a",
+        "label": "people"
+      },
+      {
+        "id": "item-3777f9630aff",
+        "label": "people"
+      },
+      {
+        "id": "item-eb6322e6fc84",
+        "label": "commercial"
+      },
+      {
+        "id": "item-78de24324620",
+        "label": "people"
+      },
+      {
+        "id": "item-566063891669",
+        "label": "research"
+      },
+      {
+        "id": "item-76f04793096e",
+        "label": "people"
+      },
+      {
+        "id": "item-ecf91b200e1b",
+        "label": "engineering"
+      },
+      {
+        "id": "item-6798f398a07b",
+        "label": "commercial"
+      },
+      {
+        "id": "item-c15c23ebd220",
+        "label": "commercial"
+      },
+      {
+        "id": "item-6fb0beddb4a2",
+        "label": "other"
+      },
+      {
+        "id": "item-0dc9545f9ca6",
+        "label": "other"
+      },
+      {
+        "id": "item-05e89ae3b3a7",
+        "label": "people"
+      },
+      {
+        "id": "item-7369182b68b1",
+        "label": "commercial"
+      },
+      {
+        "id": "item-0ef2b5f09fb2",
+        "label": "other"
+      },
+      {
+        "id": "item-c31c16df8294",
+        "label": "people"
+      },
+      {
+        "id": "item-5881614c2490",
+        "label": "commercial"
+      },
+      {
+        "id": "item-8f972d67a06f",
+        "label": "engineering"
+      },
+      {
+        "id": "item-5ae84e2fe372",
+        "label": "engineering"
+      },
+      {
+        "id": "item-8d942e95cb80",
+        "label": "other"
+      },
+      {
+        "id": "item-84cac42be092",
+        "label": "research"
+      },
+      {
+        "id": "item-50c460b205a6",
+        "label": "research"
+      }
+    ]
+  },
+  {
+    "id": "feedback_theme",
+    "prompt": "Classify every record in items.jsonl under the feedback_theme policy. Write decisions.jsonl with exactly one JSON object per input record, containing only id and label. Keep original IDs. Do not modify input files or take external actions. Return the output filename and number of records. The authoritative decision policy is supplied here so no separate policy-file read is needed: {\"question\": \"What is the primary requested improvement?\", \"criteria\": {\"reliability\": \"Fix failures, data loss or unavailable behavior\", \"usability\": \"Improve navigation, comprehension or interaction effort\", \"pricing\": \"Change price, plan limits or billing policy\", \"feature\": \"Add a capability that does not currently exist\"}}",
+    "expected": [
+      {
+        "id": "feedback-8qwmj3jquq",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-3mxpjz6tn8",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-tk3eqhf6tn",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-zhe9hea5x3",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-yqrtjq5mbv",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-jjsrfp66km",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-yvmnrpp44a",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-gna6akbqxv",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-en6aznxc2j",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-zuayd4vpc2",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-m2pqf893dn",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-peu34gknyr",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-268bwxsuca",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-mj34m7mpkj",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-kkayrdqwkc",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-h5q6xmgcw7",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-esaz7z9b5t",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-5pqjb4nv39",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-gsuvrf9x2x",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-5gug6x5khy",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-fb9atnkmaq",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-me35kpf5er",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-pnjw3cqz3t",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-bkhh5ux3ww",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-dsmz66mery",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-xcr4stu5b2",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-f3969jppn2",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-bs3j7wa3fc",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-nd477ck3uc",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-ms5rk7z48u",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-t3trexhck3",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-4gnzhrccy6",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-uwmdkpk3qy",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-evkgfkxpkq",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-b9uunfjp2k",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-ryw72k2anm",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-vy7c4suybj",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-9jt9en2mmz",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-64an6nytxr",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-nt7sags24e",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-2at59ftwky",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-nnne4u8axe",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-xc93u5e5jz",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-7xfam4by4w",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-rdkuz23sed",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-mdwrqrsm5w",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-mpfkmnhj7d",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-s228w9ub67",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-af3yrcp7c2",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-2nd2m5e2h8",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-3rg2hrwp8r",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-fnvtpc5xy6",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-d7hc7zf6q7",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-bfdbgyfhqk",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-rcq5w44gt6",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-ja79e5aa4b",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-eh7dvzbfbf",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-w85wk9kckn",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-ew3ebers69",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-8bab6fu9sg",
+        "label": "pricing"
+      },
+      {
+        "id": "feedback-nmbvp5x3dy",
+        "label": "usability"
+      },
+      {
+        "id": "feedback-cu48ygpsfw",
+        "label": "feature"
+      },
+      {
+        "id": "feedback-n2hq8nms4s",
+        "label": "reliability"
+      },
+      {
+        "id": "feedback-4nbw6xg7vt",
+        "label": "pricing"
+      }
+    ],
+    "policy": "feedback_theme"
+  }
+]

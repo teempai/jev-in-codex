@@ -1,7 +1,7 @@
 {
   "name": "jev-in-codex",
-  "version": "0.2.0",
-  "description": "Batch feedback labelling with Jev; capabilities require benchmark evidence.",
+  "version": "0.3.0",
+  "description": "Batch text labelling with custom criteria; capabilities require benchmark evidence.",
   "author": {
     "name": "Vectordrift",
     "url": "https://github.com/teempai"
@@ -9,8 +9,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Jev in Codex",
-    "shortDescription": "Label feedback batches with Jev.",
-    "longDescription": "Create a complete labelled artifact and review uncertain records. Initial benchmarked policy: customer-feedback themes.",
+    "shortDescription": "Label text batches with your own criteria.",
+    "longDescription": "Create complete labelled artifacts with a custom question and label definitions, then review uncertain records. Benchmark evidence is workload-specific.",
     "developerName": "Vectordrift",
     "category": "Productivity",
     "capabilities": [
@@ -18,7 +18,7 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Use Jev to label this feedback batch."
+      "Use Jev to label this text batch with my criteria."
     ]
   },
   "mcpServers": "./.mcp.json",

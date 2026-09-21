@@ -1,0 +1,19 @@
+{
+  "id": "action_needed-0-A",
+  "task": "action_needed",
+  "rep": 0,
+  "arm": "A",
+  "code": 0,
+  "timedOut": false,
+  "inputs_unchanged": true,
+  "elapsed_ms": 13884.133917000001,
+  "usage": [
+    {
+      "input_tokens": 42758,
+      "cached_input_tokens": 33408,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 281,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

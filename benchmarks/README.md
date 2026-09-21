@@ -1,5 +1,7 @@
 # Labelling benchmark
 
+**Current interface: 0.3 custom policies.** See the [four-workload report](custom/README.md), full new evidence and regression results. This page preserves the original 0.2 experiment; its source hash describes that earlier release. Current-source verification uses the 0.3 freeze, while CI still recomputes the original result.
+
 ## Release result (0.2.0)
 
 The compiled `jev_label` implementation passed the predeclared development gate on a 64-message synthetic feedback batch: **42.7% less total Codex input and 26.4% less end-to-end elapsed time** than plain Codex, as paired geometric means over four repetitions. Both conditions produced **256/256 correct repeated judgments**. There were **32 successful Jev requests**, no raw Jev labeling errors and no failed shell commands. All four plugin calls completed successfully and returned `method: jev`.

@@ -1,0 +1,7 @@
+{
+  "question": "Does the recipient have an outstanding requested action in this message?",
+  "criteria": {
+    "action": "The recipient is explicitly asked to do something or answer a question, and that request has not been withdrawn or completed.",
+    "no_action": "Informational, resolved or cancelled requests, or actions assigned only to someone else. A past request alone does not count."
+  }
+}

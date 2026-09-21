@@ -1,0 +1,10 @@
+{
+  "question": "Which collection should hold this document, based on its main current purpose rather than incidental mentions?",
+  "criteria": {
+    "engineering": "Technical implementation, system operations, debugging or deployment instructions.",
+    "research": "Study design, experiment methods or interpretation of research observations.",
+    "commercial": "Sales, customer contracts, purchasing or billing operations.",
+    "people": "Recruitment, onboarding, staff development or leave administration.",
+    "other": "None of those purposes, including facilities, community events or personal notes."
+  }
+}

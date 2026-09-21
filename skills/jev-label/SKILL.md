@@ -1,11 +1,13 @@
 ---
 name: jev-label
-description: Label a substantial JSONL batch of customer feedback with Jev and produce a complete labelled file. Use the feedback_theme policy when the user wants reliability, usability, pricing or feature labels. Evidence supports the documented 64-message synthetic workload; prefer ordinary tools for small batches. Do not use for tool selection, search, log triage or arbitrary classification.
+description: Label a substantial JSONL text batch with Jev using a custom question and label definitions, or the feedback_theme preset. Create a complete labelled file and review uncertain records. Evidence is limited to documented 64-record synthetic workloads; prefer ordinary tools for small batches. This is single-label text classification, not search, extraction or tool selection.
 ---
 
 # Batch labelling
 
-Use `jev_label` with `path` relative to the configured workspace. Its only admitted policy is `feedback_theme`:
+Use `jev_label` with `path` relative to the configured workspace. For custom labels, pass `policy: {question, criteria: {label: definition}}` with 2–16 labels. Define exclusive categories, tie-breaks and an explicit unknown/other category when needed. Each call assigns one label per record. Use a separate output file for each dimension; combined multi-dimension workflows have not been benchmarked. Do not invent a new named preset. See the repository docs/LABELLING.md for limits.
+
+The default preset is `feedback_theme`:
 
 - `reliability`: failures, data loss or unavailable behavior.
 - `usability`: navigation, comprehension or interaction effort.
@@ -20,4 +22,4 @@ Read the returned policy and original evidence for decisions below confidence 0.
 
 Verify `method: jev`, `api_requests`, record count and successful file creation. Errors produce no substitute labels. If the provider fails or the batch is too small to repay the overhead, use ordinary tools and state that Jev did not complete the task.
 
-The benchmark is exploratory, synthetic and specific to feedback themes. It does not prove general cost savings, accuracy superiority or a universal size threshold. New policies, capabilities and broadening of claims require the repository's benchmark gate first. Labels do not authorize sending messages, editing issues or taking other external actions.
+The benchmark is exploratory and synthetic, covering action-needed, sentiment, document routing and feedback themes at 64 records. A new user taxonomy is not automatically validated: check representative examples and ambiguous cases against the intended criteria. It does not prove general cost savings, accuracy superiority or a universal size threshold. New built-in presets, capabilities and broadening of claims require the repository's benchmark gate first. Labels do not authorize sending messages, editing issues or taking other external actions.

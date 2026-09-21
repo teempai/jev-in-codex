@@ -1,16 +1,20 @@
 # Jev in Codex
 
-A Codex plugin for **batch labelling with Jev**. It turns a JSONL file of customer feedback into a complete labelled file, while Codex reviews uncertain decisions.
+A Codex plugin for **batch labelling with Jev**. It turns a JSONL file of text records into a complete labelled file, while Codex reviews uncertain decisions.
 
-**One tool: `jev_label`. One admitted policy: `feedback_theme`.** The previous capability-selection, context-search and output-triage tools have been removed because their tested workflows did not show a useful improvement. There is no lexical or local-classifier fallback.
+**One tool: `jev_label`, with custom question/criteria policies and the `feedback_theme` preset.** The previous capability-selection, context-search and output-triage tools have been removed because their tested workflows did not show a useful improvement. There is no lexical or local-classifier fallback.
+
+Define your own labels for topics, sentiment, document collections or other text decisions. See [custom labelling](docs/LABELLING.md) for a complete example, taxonomy design and limits. Each call assigns one label per record.
 
 ## Why this capability is included
 
-The release benchmark on 64 synthetic feedback messages measured **42.7% less total Codex input and 26.4% less elapsed time**, with all labels correct across four paired runs. Tiny batches performed worse in the earlier sweep.
+The [0.3 custom-policy benchmark](benchmarks/custom/README.md) passed separately on action-needed, sentiment, document routing and feedback: **21.5–31.9% less total Codex input and 8.4–23.5% less elapsed time** across four paired repetitions per task. Both arms labelled all records correctly. These are 64-record synthetic workloads, not a guarantee for every taxonomy or batch size.
+
+The original 0.2 release benchmark on 64 synthetic feedback messages measured **42.7% less total Codex input and 26.4% less elapsed time**, with all labels correct across four paired runs. Tiny batches performed worse in the earlier sweep.
 
 The [benchmark report](benchmarks/README.md) includes the shipped implementation check, prototype results, methods, complete artifacts and negative results. This is exploratory verification on known synthetic development data, not independent confirmation. It does not prove real-world accuracy, general labelling superiority, invoice savings or automatic desktop adoption.
 
-**From this release onward, new capabilities and policies require a passing, reviewable benchmark against plain Codex before being exposed.** See [the admission policy](benchmarks/POLICY.md).
+**New capabilities, built-in presets and workflow expansions require a passing, reviewable benchmark against plain Codex before being exposed.** User-supplied taxonomies use the custom-policy interface; their accuracy and benefit still need validation on the actual data. See [the admission policy](benchmarks/POLICY.md).
 
 ## Use
 
@@ -60,7 +64,7 @@ Prefer the plugin installation for its bundled skill. Do not register both copie
 
 ## Data and failure handling
 
-Every input record and the fixed policy are sent over HTTPS to `https://api.typesafe.ai/v1/systemone`. Jev makes the decisions; local code only validates, batches, serializes and selects uncertain records for review. Up to eight requests run concurrently, with at most eight questions per request and a 28,000-byte body budget. Requests have an eight-second timeout and a twenty-second total inference deadline.
+Every input record and the selected policy are sent over HTTPS to `https://api.typesafe.ai/v1/systemone`. Jev makes the decisions; local code only validates, batches, serializes and selects uncertain records for review. Up to eight requests run concurrently, with at most eight questions per request and a 28,000-byte body budget. Requests have an eight-second timeout and a twenty-second total inference deadline.
 
 Missing credentials, malformed responses or a failed batch produce an explicit error and no labelled output. No local labels replace Jev results. Existing outputs, traversal, escaping symlinks, common credential paths, invalid UTF-8, binary and oversized input are rejected. Provider error bodies are not exposed. The production server has no content logs, telemetry or persistent cache.
 

@@ -98,3 +98,46 @@ test('partial batch failure writes nothing; successful nested output is never ov
   await assert.rejects(labelFile(workspace, 'items.jsonl', 'output/labels.jsonl', { apiKey: 'test-only', fetch: failing }), /exists/);
   assert.deepEqual(await readFile(path.join(root, 'output/labels.jsonl')), original);
 });
+
+test('custom taxonomies reach Jev unchanged and preserve labels and uncertain evidence', async t => {
+  const { root, workspace } = await fixture(t, 2);
+  const policy = { question: 'Does this require a reply?', criteria: { reply: 'An explicit unanswered request.', no_reply: 'Information only.' } };
+  const mock = (async (_url, init) => {
+    const body = JSON.parse(String(init?.body));
+    assert.deepEqual(body.questions.q0.criteria, policy.criteria);
+    assert.ok(body.questions.q1.instructions.includes(policy.question));
+    return Response.json({ answers: { q0: { type: 'choice', choice: 'reply', confidence: .6, probabilities: { reply: .6, no_reply: .4 } }, q1: { type: 'choice', choice: 'no_reply', confidence: .9, probabilities: { reply: .1, no_reply: .9 } } } });
+  }) as typeof fetch;
+  const result = await labelFile(workspace, 'items.jsonl', undefined, { apiKey: 'test-only', fetch: mock }, policy);
+  assert.deepEqual({ ...result.counts }, { reply: 1, no_reply: 1 });
+  assert.equal(result.policy.id, 'custom'); assert.deepEqual(result.review.map(x => x.id), ['r0']);
+  assert.deepEqual((await readFile(path.join(root, 'decisions.jsonl'), 'utf8')).trim().split('\n').map(x => JSON.parse(x).label), ['reply', 'no_reply']);
+});
+
+test('invalid custom policies fail before reading input or calling provider', async t => {
+  const { workspace } = await fixture(t); let calls = 0;
+  const options = { apiKey: 'test-only', fetch: (async () => { calls++; throw Error('unexpected'); }) as typeof fetch };
+  const invalid = [null, 'sentiment', {}, { question: '', criteria: { a: 'A', b: 'B' } }, { question: 'Q', criteria: { a: 'A' } },
+    { question: 'Q', criteria: { a: '', b: 'B' } }, { question: 'Q', criteria: { 'bad name': 'A', b: 'B' } },
+    { question: 'Q', criteria: { constructor: 'A', b: 'B' } }, { question: 'Q', criteria: JSON.parse('{"__proto__":"A","b":"B"}') },
+    { question: 'Q', criteria: Object.fromEntries(Array.from({ length: 17 }, (_, i) => ['k'+i, 'X'])) },
+    { question: 'Q'.repeat(1001), criteria: { a: 'A', b: 'B' } }, { question: 'Q', criteria: { a: 'A'.repeat(1001), b: 'B' } },
+    { question: 'Q', criteria: { a: 'A', b: 'B' }, extra: true }];
+  for (const policy of invalid) await assert.rejects(labelFile(workspace, 'missing.jsonl', undefined, options, policy), /Policy must/);
+  assert.equal(calls, 0);
+});
+
+test('custom unknown labels are rejected and long policies split requests by bytes', async t => {
+  const { root, workspace } = await fixture(t, 9);
+  const policy = { question: 'Choose the matching category.', criteria: Object.fromEntries(Array.from({ length: 16 }, (_, i) => ['k'+i, 'definition '.repeat(80)])) };
+  let calls = 0;
+  const mock = (async (_url, init) => {
+    const body = String(init?.body); assert.ok(Buffer.byteLength(body) <= 28000); calls++;
+    const parsed = JSON.parse(body); assert.equal(parsed.state.items.length, 1);
+    return Response.json({ answers: { q0: { type: 'choice', choice: 'k0', confidence: 1, probabilities: Object.fromEntries(Object.keys(policy.criteria).map(k => [k, k === 'k0' ? 1 : 0])) } } });
+  }) as typeof fetch;
+  await labelFile(workspace, 'items.jsonl', undefined, { apiKey: 'test-only', fetch: mock }, policy); assert.equal(calls, 9);
+  await rm(path.join(root, 'decisions.jsonl'));
+  await assert.rejects(labelFile(workspace, 'items.jsonl', undefined, { apiKey: 'test-only', fetch: async (_url, init) => Response.json(response(String(init?.body))) }, policy), /No output/);
+  await assert.rejects(readFile(path.join(root, 'decisions.jsonl')));
+});

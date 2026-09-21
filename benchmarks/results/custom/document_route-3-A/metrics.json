@@ -1,0 +1,19 @@
+{
+  "id": "document_route-3-A",
+  "task": "document_route",
+  "rep": 3,
+  "arm": "A",
+  "code": 0,
+  "timedOut": false,
+  "inputs_unchanged": true,
+  "elapsed_ms": 12507.325375000015,
+  "usage": [
+    {
+      "input_tokens": 44334,
+      "cached_input_tokens": 34176,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 334,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

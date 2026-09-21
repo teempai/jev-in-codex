@@ -25,7 +25,11 @@ The model is pinned to `jev-1.13.0`, matching the benchmark. `JEV_MODEL` is no l
 
 The former `jev_select_capability`, `jev_search` and `jev_triage` tools, `jev-assist` skill and local fallback are removed. Delete only their stale guidance from the active project/global instruction file if that guidance was previously installed and the user authorizes its removal. Preserve unrelated instructions. Do not replace it with blanket global labelling instructions.
 
-The new tool creates files and sends every input record to TypeSafe. It accepts an explicit feedback policy only. Output defaults to `decisions.jsonl` next to the input and never overwrites an existing file; use a new `output_path` for another run.
+The new tool creates files and sends every input record to TypeSafe. It accepts the feedback preset or a custom question and label definitions. Output defaults to `decisions.jsonl` next to the input and never overwrites an existing file; use a new `output_path` for another run.
+
+## Updating from 0.2
+
+The `feedback_theme` default and id/label output are unchanged. Version 0.3 adds a policy object for custom text labels; see [the interface guide](LABELLING.md). Rebuild, reinstall with the host cachebuster flow and start a new thread. Preserve the working private launcher and workspace root.
 
 ## Remove
 

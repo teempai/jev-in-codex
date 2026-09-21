@@ -19,3 +19,4 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: node benchmarks/analyze.mjs benchmarks/results/release --require-pass
+      - run: node benchmarks/analyze.mjs benchmarks/results/custom --require-pass
